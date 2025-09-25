@@ -1,3 +1,4 @@
+using BlasII.Framework.WeaponEvents.Constants;
 using Il2CppGame.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 
@@ -47,9 +48,9 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Combo attacks */
 
-	protected internal virtual void OnCombo(BladeAttack attack) {}
+	protected internal virtual void OnCombo(BladeAttackID attack) {}
 
-	protected internal virtual void OnComboHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnComboHit(BladeAttackID attack, AttackInfo info) {}
 
 	protected internal virtual void OnCombo1() {}
 
@@ -83,9 +84,9 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Mid air attacks */
 
-	protected internal virtual void OnMidAirSlash(BladeAttack attack) {}
+	protected internal virtual void OnMidAirSlash(BladeAttackID attack) {}
 
-	protected internal virtual void OnMidAirSlashHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnMidAirSlashHit(BladeAttackID attack, AttackInfo info) {}
 
 	protected internal virtual void OnMidAirSlash1() {}
 
@@ -100,13 +101,13 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// <summary>
 	/// Called when the player parries an incoming attack with Ruego al Alba.
 	/// </summary>
-	protected internal virtual void OnRetribution(BladeAttack attack) {}
+	protected internal virtual void OnRetribution(BladeAttackID attack) {}
 
 	/// <summary>
 	/// Called when the player parries an incoming attack with Ruego al Alba,
 	/// and hit an enemy with it.
 	/// </summary>
-	protected internal virtual void OnRetributionHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnRetributionHit(BladeAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// Called when the player parries an incoming attack with Ruego al Alba,
@@ -139,14 +140,14 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// Called when the player makes a plunging strike with Ruego al Alba, by
 	/// holding the down key and attacking in the air.
 	/// </summary>
-	protected internal virtual void OnPlungingStrike(BladeAttack attack) {}
+	protected internal virtual void OnPlungingStrike(BladeAttackID attack) {}
 
 	/// <summary>
 	/// Called when the player makes a plunging strike with Ruego al Alba, by
 	/// holding the down key and attacking in the air, and hits an enemy with
 	/// this attack.
 	/// </summary>
-	protected internal virtual void OnPlungingStrikeHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnPlungingStrikeHit(BladeAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// Called when the player makes a plunging strike with Ruego al Alba, by
@@ -192,17 +193,17 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Blood pact */
 
-	protected internal virtual void OnBloodPactAttack(BladeAttack attack) {}
+	protected internal virtual void OnBloodPactAttack(BladeAttackID attack) {}
 
-	protected internal virtual void OnBloodPactAttackHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnBloodPactAttackHit(BladeAttackID attack, AttackInfo info) {}
 
 	protected internal virtual void OnBloodPactStart() {}
 
 	protected internal virtual void OnBloodPactStartHit(AttackInfo info) {}
 
-	protected internal virtual void OnBloodPactSpecialAttack(BladeAttack attack) {}
+	protected internal virtual void OnBloodPactSpecialAttack(BladeAttackID attack) {}
 
-	protected internal virtual void OnBloodPactSpecialAttackHit(BladeAttack attack, AttackInfo info) {}
+	protected internal virtual void OnBloodPactSpecialAttackHit(BladeAttackID attack, AttackInfo info) {}
 
 	protected internal virtual void OnBloodPactSpecialAttackGround() {}
 

@@ -1,3 +1,4 @@
+using BlasII.Framework.WeaponEvents.Constants;
 using HarmonyLib;
 using Il2CppGame.Components.Attack;
 using Il2CppTGK.Game.Components;

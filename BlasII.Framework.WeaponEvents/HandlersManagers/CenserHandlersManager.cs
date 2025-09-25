@@ -1,4 +1,5 @@
 using System;
+using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Handlers;
 using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
@@ -29,8 +30,8 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 	{
 		Handlers.ForEach(handler => handler.OnAttackHit(info));
 
-		CenserAttack attack = (CenserAttack) info.attackID.id;
-		if (!Enum.IsDefined(typeof(CenserAttack), attack))
+		CenserAttackID attack = (CenserAttackID) info.attackID.id;
+		if (!Enum.IsDefined(typeof(CenserAttackID), attack))
 		{
 			ModLog.Error($"Error: Unknown attack ID for Veredicto: {info.attackID.id}");
 			return;
@@ -38,31 +39,31 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 
 		switch (attack)
 		{
-			case CenserAttack.SWING:
+			case CenserAttackID.SWING:
 				Handlers.ForEach(handler => handler.OnSwingHit(info));
 				break;
-			case CenserAttack.CROUCH:
+			case CenserAttackID.CROUCH:
 				Handlers.ForEach(handler => handler.OnCrouchAttackHit(info));
 				break;
-			case CenserAttack.MIDAIR_SWING:
+			case CenserAttackID.MIDAIR_SWING:
 				Handlers.ForEach(handler => handler.OnMidairSwingHit(info));
 				break;
-			case CenserAttack.IGNITION_AREA:
+			case CenserAttackID.IGNITION_AREA:
 				Handlers.ForEach(handler => handler.OnIgnitionAreaHit(info));
 				break;
-			case CenserAttack.IGNITION_OR_TEMPER_STRIKE:
+			case CenserAttackID.IGNITION_OR_TEMPER_STRIKE:
 				/* TODO */
 				break;
-			case CenserAttack.TEMPER_STRIKE_FIRST_HIT:
+			case CenserAttackID.TEMPER_STRIKE_FIRST_HIT:
 				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
 				break;
-			case CenserAttack.MIDAIR_IGNITION_STRIKE:
+			case CenserAttackID.MIDAIR_IGNITION_STRIKE:
 				Handlers.ForEach(handler => handler.OnMidairIgnitionHit(info));
 				break;
-			case CenserAttack.WHIRLWIND:
+			case CenserAttackID.WHIRLWIND:
 				Handlers.ForEach(handler => handler.OnWhirlwindHit(info));
 				break;
-			case CenserAttack.CHARGED_ATTACK:
+			case CenserAttackID.CHARGED_ATTACK:
 				/* TODO */
 				break;
 			default:

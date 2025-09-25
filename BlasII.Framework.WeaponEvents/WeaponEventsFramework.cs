@@ -1,4 +1,5 @@
 using System;
+using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.HandlersManagers;
 using BlasII.ModdingAPI;
 using Il2Cpp;

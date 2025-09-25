@@ -1,3 +1,4 @@
+using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Handlers;
 using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
@@ -22,8 +23,8 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 	{
 		Handlers.ForEach(handler => handler.OnAttack(id));
 
-		BladeAttack attack = (BladeAttack) id.id;
-		if (!Enum.IsDefined(typeof(BladeAttack), attack))
+		BladeAttackID attack = (BladeAttackID) id.id;
+		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
 			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {id.id}");
 			return;
@@ -31,34 +32,34 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 		switch (attack)
 		{
-			case BladeAttack.COMBO_1:
-			case BladeAttack.COMBO_2:
-			case BladeAttack.COMBO_3:
-			case BladeAttack.COMBO_3_ASCENDING:
-			case BladeAttack.COMBO_3_SPIN:
-			case BladeAttack.COMBO_4:
-			case BladeAttack.COMBO_4_BERSERK:
+			case BladeAttackID.COMBO_1:
+			case BladeAttackID.COMBO_2:
+			case BladeAttackID.COMBO_3:
+			case BladeAttackID.COMBO_3_ASCENDING:
+			case BladeAttackID.COMBO_3_SPIN:
+			case BladeAttackID.COMBO_4:
+			case BladeAttackID.COMBO_4_BERSERK:
 				HandleComboAttack(attack);
 				break;
-			case BladeAttack.CROUCH:
+			case BladeAttackID.CROUCH:
 				Handlers.ForEach(handler => handler.OnCrouchAttack());
 				break;
-			case BladeAttack.AIR_SLASH_1:
-			case BladeAttack.AIR_SLASH_2:
+			case BladeAttackID.AIR_SLASH_1:
+			case BladeAttackID.AIR_SLASH_2:
 				HandleMidAirSlashAttack(attack);
 				break;
-			case BladeAttack.NORMAL_RETRIBUTION:
-			case BladeAttack.PERFECT_RETRIBUTION:
+			case BladeAttackID.NORMAL_RETRIBUTION:
+			case BladeAttackID.PERFECT_RETRIBUTION:
 				HandleCounterAttack(attack);
 				break;
-			case BladeAttack.LOWER_PLUNGING_STRIKE:
-			case BladeAttack.MIDDLE_PLUNGING_STRIKE:
-			case BladeAttack.HIGH_PLUNGING_STRIKE:
+			case BladeAttackID.LOWER_PLUNGING_STRIKE:
+			case BladeAttackID.MIDDLE_PLUNGING_STRIKE:
+			case BladeAttackID.HIGH_PLUNGING_STRIKE:
 				HandlePlungingStrikeAttack(attack);
 				break;
-			case BladeAttack.BLOODPACT_START:
-			case BladeAttack.BLOODPACT_SPECIAL:
-			case BladeAttack.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_START:
+			case BladeAttackID.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
 				HandleBloodPactAttack(attack);
 				break;
 			default:
@@ -73,8 +74,8 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 	{
 		Handlers.ForEach(handler => handler.OnAttackHit(info));
 
-		BladeAttack attack = (BladeAttack) info.attackID.id;
-		if (!Enum.IsDefined(typeof(BladeAttack), attack))
+		BladeAttackID attack = (BladeAttackID) info.attackID.id;
+		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
 			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {info.attackID.id}");
 			return;
@@ -82,34 +83,34 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 		switch (attack)
 		{
-			case BladeAttack.COMBO_1:
-			case BladeAttack.COMBO_2:
-			case BladeAttack.COMBO_3:
-			case BladeAttack.COMBO_3_ASCENDING:
-			case BladeAttack.COMBO_3_SPIN:
-			case BladeAttack.COMBO_4:
-			case BladeAttack.COMBO_4_BERSERK:
+			case BladeAttackID.COMBO_1:
+			case BladeAttackID.COMBO_2:
+			case BladeAttackID.COMBO_3:
+			case BladeAttackID.COMBO_3_ASCENDING:
+			case BladeAttackID.COMBO_3_SPIN:
+			case BladeAttackID.COMBO_4:
+			case BladeAttackID.COMBO_4_BERSERK:
 				HandleComboAttackHit(attack, info);
 				break;
-			case BladeAttack.CROUCH:
+			case BladeAttackID.CROUCH:
 				Handlers.ForEach(handler => handler.OnCrouchAttackHit(info));
 				break;
-			case BladeAttack.AIR_SLASH_1:
-			case BladeAttack.AIR_SLASH_2:
+			case BladeAttackID.AIR_SLASH_1:
+			case BladeAttackID.AIR_SLASH_2:
 				HandleMidAirSlashAttackHit(attack, info);
 				break;
-			case BladeAttack.NORMAL_RETRIBUTION:
-			case BladeAttack.PERFECT_RETRIBUTION:
+			case BladeAttackID.NORMAL_RETRIBUTION:
+			case BladeAttackID.PERFECT_RETRIBUTION:
 				HandleCounterAttackHit(attack, info);
 				break;
-			case BladeAttack.LOWER_PLUNGING_STRIKE:
-			case BladeAttack.MIDDLE_PLUNGING_STRIKE:
-			case BladeAttack.HIGH_PLUNGING_STRIKE:
+			case BladeAttackID.LOWER_PLUNGING_STRIKE:
+			case BladeAttackID.MIDDLE_PLUNGING_STRIKE:
+			case BladeAttackID.HIGH_PLUNGING_STRIKE:
 				HandlePlungingStrikeAttackHit(attack, info);
 				break;
-			case BladeAttack.BLOODPACT_START:
-			case BladeAttack.BLOODPACT_SPECIAL:
-			case BladeAttack.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_START:
+			case BladeAttackID.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
 				HandleBloodPactAttackHit(attack, info);
 				break;
 			default:
@@ -120,30 +121,30 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleComboAttack(BladeAttack attack)
+	public void HandleComboAttack(BladeAttackID attack)
 	{
 		Handlers.ForEach(handler => handler.OnCombo(attack));
 		switch (attack)
 		{
-			case BladeAttack.COMBO_1:
+			case BladeAttackID.COMBO_1:
 				Handlers.ForEach(handler => handler.OnCombo1());
 				break;
-			case BladeAttack.COMBO_2:
+			case BladeAttackID.COMBO_2:
 				Handlers.ForEach(handler => handler.OnCombo2());
 				break;
-			case BladeAttack.COMBO_3:
+			case BladeAttackID.COMBO_3:
 				Handlers.ForEach(handler => handler.OnCombo3());
 				break;
-			case BladeAttack.COMBO_3_ASCENDING:
+			case BladeAttackID.COMBO_3_ASCENDING:
 				Handlers.ForEach(handler => handler.OnCombo3Ascending());
 				break;
-			case BladeAttack.COMBO_3_SPIN:
+			case BladeAttackID.COMBO_3_SPIN:
 				Handlers.ForEach(handler => handler.OnCombo3Spin());
 				break;
-			case BladeAttack.COMBO_4:
+			case BladeAttackID.COMBO_4:
 				Handlers.ForEach(handler => handler.OnCombo4());
 				break;
-			case BladeAttack.COMBO_4_BERSERK:
+			case BladeAttackID.COMBO_4_BERSERK:
 				/* TODO */
 				break;
 			default:
@@ -154,30 +155,30 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleComboAttackHit(BladeAttack attack, AttackInfo info)
+	public void HandleComboAttackHit(BladeAttackID attack, AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnComboHit(attack, info));
 		switch (attack)
 		{
-			case BladeAttack.COMBO_1:
+			case BladeAttackID.COMBO_1:
 				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
 				break;
-			case BladeAttack.COMBO_2:
+			case BladeAttackID.COMBO_2:
 				Handlers.ForEach(handler => handler.OnCombo2Hit(info));
 				break;
-			case BladeAttack.COMBO_3:
+			case BladeAttackID.COMBO_3:
 				Handlers.ForEach(handler => handler.OnCombo3Hit(info));
 				break;
-			case BladeAttack.COMBO_3_ASCENDING:
+			case BladeAttackID.COMBO_3_ASCENDING:
 				Handlers.ForEach(handler => handler.OnCombo3AscendingHit(info));
 				break;
-			case BladeAttack.COMBO_3_SPIN:
+			case BladeAttackID.COMBO_3_SPIN:
 				Handlers.ForEach(handler => handler.OnCombo3SpinHit(info));
 				break;
-			case BladeAttack.COMBO_4:
+			case BladeAttackID.COMBO_4:
 				Handlers.ForEach(handler => handler.OnCombo4Hit(info));
 				break;
-			case BladeAttack.COMBO_4_BERSERK:
+			case BladeAttackID.COMBO_4_BERSERK:
 				/* TODO */
 				break;
 			default:
@@ -188,15 +189,15 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleMidAirSlashAttack(BladeAttack attack)
+	public void HandleMidAirSlashAttack(BladeAttackID attack)
 	{
 		Handlers.ForEach(handler => handler.OnMidAirSlash(attack));
 		switch (attack)
 		{
-			case BladeAttack.AIR_SLASH_1:
+			case BladeAttackID.AIR_SLASH_1:
 				Handlers.ForEach(handler => handler.OnMidAirSlash1());
 				break;
-			case BladeAttack.AIR_SLASH_2:
+			case BladeAttackID.AIR_SLASH_2:
 				Handlers.ForEach(handler => handler.OnMidAirSlash2());
 				break;
 			default:
@@ -207,15 +208,15 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleMidAirSlashAttackHit(BladeAttack attack, AttackInfo info)
+	public void HandleMidAirSlashAttackHit(BladeAttackID attack, AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnMidAirSlashHit(attack, info));
 		switch (attack)
 		{
-			case BladeAttack.AIR_SLASH_1:
+			case BladeAttackID.AIR_SLASH_1:
 				Handlers.ForEach(handler => handler.OnMidAirSlash1Hit(info));
 				break;
-			case BladeAttack.AIR_SLASH_2:
+			case BladeAttackID.AIR_SLASH_2:
 				Handlers.ForEach(handler => handler.OnMidAirSlash2Hit(info));
 				break;
 			default:
@@ -226,15 +227,15 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleCounterAttack(BladeAttack attack)
+	public void HandleCounterAttack(BladeAttackID attack)
 	{
 		Handlers.ForEach(handler => handler.OnRetribution(attack));
 		switch (attack)
 		{
-			case BladeAttack.NORMAL_RETRIBUTION:
+			case BladeAttackID.NORMAL_RETRIBUTION:
 				Handlers.ForEach(handler => handler.OnNormalRetribution());
 				break;
-			case BladeAttack.PERFECT_RETRIBUTION:
+			case BladeAttackID.PERFECT_RETRIBUTION:
 				Handlers.ForEach(handler => handler.OnPerfectRetribution());
 				break;
 			default:
@@ -245,15 +246,15 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleCounterAttackHit(BladeAttack attack, AttackInfo info)
+	public void HandleCounterAttackHit(BladeAttackID attack, AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnRetributionHit(attack, info));
 		switch (attack)
 		{
-			case BladeAttack.NORMAL_RETRIBUTION:
+			case BladeAttackID.NORMAL_RETRIBUTION:
 				Handlers.ForEach(handler => handler.OnNormalRetributionHit(info));
 				break;
-			case BladeAttack.PERFECT_RETRIBUTION:
+			case BladeAttackID.PERFECT_RETRIBUTION:
 				Handlers.ForEach(handler => handler.OnPerfectRetributionHit(info));
 				break;
 			default:
@@ -264,18 +265,18 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandlePlungingStrikeAttack(BladeAttack attack)
+	public void HandlePlungingStrikeAttack(BladeAttackID attack)
 	{
 		Handlers.ForEach(handler => handler.OnPlungingStrike(attack));
 		switch (attack)
 		{
-			case BladeAttack.LOWER_PLUNGING_STRIKE:
+			case BladeAttackID.LOWER_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnLowerPlungingStrike());
 				break;
-			case BladeAttack.MIDDLE_PLUNGING_STRIKE:
+			case BladeAttackID.MIDDLE_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnMiddlePlungingStrike());
 				break;
-			case BladeAttack.HIGH_PLUNGING_STRIKE:
+			case BladeAttackID.HIGH_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnHighPlungingStrike());
 				break;
 			default:
@@ -286,18 +287,18 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandlePlungingStrikeAttackHit(BladeAttack attack, AttackInfo info)
+	public void HandlePlungingStrikeAttackHit(BladeAttackID attack, AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnPlungingStrikeHit(attack, info));
 		switch (attack)
 		{
-			case BladeAttack.LOWER_PLUNGING_STRIKE:
+			case BladeAttackID.LOWER_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnLowerPlungingStrikeHit(info));
 				break;
-			case BladeAttack.MIDDLE_PLUNGING_STRIKE:
+			case BladeAttackID.MIDDLE_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnMiddlePlungingStrikeHit(info));
 				break;
-			case BladeAttack.HIGH_PLUNGING_STRIKE:
+			case BladeAttackID.HIGH_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnHighPlungingStrikeHit(info));
 				break;
 			default:
@@ -308,19 +309,19 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleBloodPactAttack(BladeAttack attack)
+	public void HandleBloodPactAttack(BladeAttackID attack)
 	{
 		Handlers.ForEach(handler => handler.OnBloodPactAttack(attack));
 		switch (attack)
 		{
-			case BladeAttack.BLOODPACT_START:
+			case BladeAttackID.BLOODPACT_START:
 				Handlers.ForEach(handler => handler.OnBloodPactStart());
 				break;
-			case BladeAttack.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttack(attack));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackGround());
 				break;
-			case BladeAttack.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttack(attack));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAir());
 				break;
@@ -332,19 +333,19 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 
 	/// <summary>
 	/// </summary>
-	public void HandleBloodPactAttackHit(BladeAttack attack, AttackInfo info)
+	public void HandleBloodPactAttackHit(BladeAttackID attack, AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnBloodPactAttackHit(attack, info));
 		switch (attack)
 		{
-			case BladeAttack.BLOODPACT_START:
+			case BladeAttackID.BLOODPACT_START:
 				Handlers.ForEach(handler => handler.OnBloodPactStartHit(info));
 				break;
-			case BladeAttack.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackHit(attack, info));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackGroundHit(info));
 				break;
-			case BladeAttack.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackHit(attack, info));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAirHit(info));
 				break;
