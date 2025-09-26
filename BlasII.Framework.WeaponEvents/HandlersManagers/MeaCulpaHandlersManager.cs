@@ -10,7 +10,7 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 {
 	/// <summary>Calls the base class constructor.</summary>
-	public MeaCulpaHandlersManager() : base() {}
+	public MeaCulpaHandlersManager() : base("Mea Culpa") {}
 
 	public override void HandleAttack(AttackID id)
 	{

@@ -18,6 +18,12 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 public abstract class AbstractHandlersManager<HandlerType>
 {
 	/// <summary>
+	/// The name of the weapon the type of handler that is being managed is
+	/// handling events for. This is used for error messages.
+	/// </summary>
+	public string Name { get; private set; }
+
+	/// <summary>
 	/// The list of handlers managed by the manager.
 	/// Every handler in this list will be called when an event (attack, attack
 	/// hit) occurs in the game.
@@ -32,7 +38,7 @@ public abstract class AbstractHandlersManager<HandlerType>
 	/// Initialises the manager by instantiating the list of handlers with an
 	/// emtpy list.
 	/// </summary>
-	public AbstractHandlersManager()
+	public AbstractHandlersManager(string name)
 	{
 		Handlers = new List<HandlerType>();
 		LastAttack = null;
@@ -81,5 +87,23 @@ public abstract class AbstractHandlersManager<HandlerType>
 	/// the enemy.
 	/// </summary>
 	public abstract void HandleAttackHit(AttackInfo info);
+
+	/// <summary>
+	/// Prints an error in the Melon Loader console alerting that there has been
+	/// an attack ID that wasn't accounted for in this API.
+	/// </summary>
+	protected void LogUnknownAttackIDError(AttackID id)
+	{
+		ModLog.Error($"Error: Unknown attack ID for {Name}: {id.id} {id.name}");
+	}
+
+	/// <summary>
+	/// Prints an error in the Melon Loader console alerting that there has been
+	/// an attack ID that wasn't handled correctly by the API.
+	/// </summary>
+	protected void LogUnsupportedAttackIDError(AttackID id)
+	{
+		ModLog.Error($"Error: Unsupported attack ID for {Name}: {id.id} {id.name}");
+	}
 }
 

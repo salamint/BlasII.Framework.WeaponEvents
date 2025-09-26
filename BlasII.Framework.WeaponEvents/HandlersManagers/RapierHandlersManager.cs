@@ -1,6 +1,7 @@
 using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Events;
 using Il2CppTGK.Game.Components.Attack.Data;
+using System;
 
 namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 
@@ -11,16 +12,44 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 {
 	/// <summary>Calls the base class constructor.</summary>
-	public RapierHandlersManager() : base() {}
+	public RapierHandlersManager() : base("Sarmiento y Centella") {}
 
 	public override void HandleAttack(AttackID id)
 	{
 		Handlers.ForEach(handler => handler.OnAttack(id));
+
+		RapierAttackID attack = (RapierAttackID) id.id;
+		if (!Enum.IsDefined(typeof(RapierAttackID), attack))
+		{
+			LogUnknownAttackIDError(id);
+			return;
+		}
+
+		switch (attack)
+		{
+			default:
+				LogUnsupportedAttackIDError(id);
+				break;
+		}
 	}
 
 	public override void HandleAttackHit(AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnAttackHit(info));
+
+		RapierAttackID attack = (RapierAttackID) info.attackID.id;
+		if (!Enum.IsDefined(typeof(RapierAttackID), attack))
+		{
+			LogUnknownAttackIDError(info.attackID);
+			return;
+		}
+
+		switch (attack)
+		{
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
 	}
 
 	public void HandlerIndicatorChange(int tier)

@@ -1,6 +1,5 @@
 using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Events;
-using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
 using System;
 
@@ -15,7 +14,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 	/// <summary>
 	/// Calls the base class constructor.
 	/// </summary>
-	public BladeHandlersManager() : base() {}
+	public BladeHandlersManager() : base("Ruego al Alba") {}
 
 	/// <summary>
 	/// </summary>
@@ -26,7 +25,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 		BladeAttackID attack = (BladeAttackID) id.id;
 		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {id.id} {id.name}");
+			LogUnknownAttackIDError(id);
 			return;
 		}
 
@@ -63,7 +62,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleBloodPactAttack(attack);
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {id.id} {id.name}");
+				LogUnsupportedAttackIDError(id);
 				break;
 		}
 	}
@@ -77,7 +76,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 		BladeAttackID attack = (BladeAttackID) info.attackID.id;
 		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {info.attackID.id} {info.attackID.name}");
+			LogUnknownAttackIDError(info.attackID);
 			return;
 		}
 
@@ -114,7 +113,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleBloodPactAttackHit(attack, info);
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {info.attackID.id} {info.attackID.name}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -146,9 +145,6 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.COMBO_4_BERSERK:
 				/* TODO */
-				break;
-			default:
-				ModLog.Error($"Error: Unknown combo attack for Ruego al Alba: {attack}");
 				break;
 		}
 	}
@@ -182,7 +178,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				/* TODO */
 				break;
 			default:
-				ModLog.Error($"Error: Unknown combo attack for Ruego al Alba: {attack}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -199,9 +195,6 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.AIR_SLASH_2:
 				Handlers.ForEach(handler => handler.OnMidAirSlash2());
-				break;
-			default:
-				ModLog.Error($"Error: Unknown mid air slash attack for Ruego al Alba: {attack}");
 				break;
 		}
 	}
@@ -220,7 +213,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				Handlers.ForEach(handler => handler.OnMidAirSlash2Hit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unknown mid air slash attack for Ruego al Alba: {attack}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -237,9 +230,6 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.PERFECT_RETRIBUTION:
 				Handlers.ForEach(handler => handler.OnPerfectRetribution());
-				break;
-			default:
-				ModLog.Error($"Error: Unknown retribution attack for Ruego al Alba: {attack}");
 				break;
 		}
 	}
@@ -258,7 +248,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				Handlers.ForEach(handler => handler.OnPerfectRetributionHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unknown retribution attack for Ruego al Alba: {attack}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -278,9 +268,6 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.HIGH_PLUNGING_STRIKE:
 				Handlers.ForEach(handler => handler.OnHighPlungingStrike());
-				break;
-			default:
-				ModLog.Error($"Error: Unknown plunging strike attack for Ruego al Alba: {attack}");
 				break;
 		}
 	}
@@ -302,7 +289,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				Handlers.ForEach(handler => handler.OnHighPlungingStrikeHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unknown plunging strike attack for Ruego al Alba: {attack}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -324,9 +311,6 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttack(attack));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAir());
-				break;
-			default:
-				ModLog.Error($"Error: Unknown blood pact attack for Ruego al Alba: {attack}");
 				break;
 		}
 	}
@@ -350,7 +334,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAirHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unknown blood pact attack for Ruego al Alba: {attack}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}

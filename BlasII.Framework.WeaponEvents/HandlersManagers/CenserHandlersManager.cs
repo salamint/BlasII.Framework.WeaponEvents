@@ -1,7 +1,6 @@
 using System;
 using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Events;
-using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
 
 namespace BlasII.Framework.WeaponEvents.HandlersManagers;
@@ -12,7 +11,7 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 {
 	/// <summary>Calls the base class constructor.</summary>
-	public CenserHandlersManager() : base() {}
+	public CenserHandlersManager() : base("Veredicto") {}
 
 	/// <summary>
 	/// Calls the corresponding methods for Veredicto's attacks.
@@ -24,10 +23,9 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		CenserAttackID attack = (CenserAttackID) id.id;
 		if (!Enum.IsDefined(typeof(CenserAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Veredicto: {id.id} {id.name}");
+			LogUnknownAttackIDError(id);
 			return;
 		}
-		ModLog.Error($"Attack ID for Veredicto: {id.id} {id.name}");
 
 		switch (attack)
 		{
@@ -61,7 +59,7 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 				Handlers.ForEach(handler => handler.OnChargedAttack());
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {id.id} {id.name}");
+				LogUnsupportedAttackIDError(id);
 				break;
 		}
 	}
@@ -77,7 +75,7 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		CenserAttackID attack = (CenserAttackID) info.attackID.id;
 		if (!Enum.IsDefined(typeof(CenserAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
+			LogUnknownAttackIDError(info.attackID);
 			return;
 		}
 
@@ -111,7 +109,7 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 				Handlers.ForEach(handler => handler.OnChargedAttackHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 	}
@@ -132,7 +130,7 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported ignition or temper attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
+				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
 		LastAttack = info;
