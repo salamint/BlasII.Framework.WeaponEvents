@@ -93,7 +93,7 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 
 	public void HandleIndicatorChange(int tier)
 	{
-		Handlers.ForEach(handler => handler.OnIndicator());
+		Handlers.ForEach(handler => handler.OnIndicator(tier));
 		switch (tier)
 		{
 			case 1:

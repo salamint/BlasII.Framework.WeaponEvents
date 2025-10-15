@@ -112,7 +112,7 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// <summary>
 	/// Called when the player fills an indicator of Sarmiento y Centella.
 	/// </summary>
-	protected internal virtual void OnIndicator() {}
+	protected internal virtual void OnIndicator(int tier) {}
 
 	/// <summary>
 	/// Called when the player fills the first indicator of Sarmiento y Centella.
