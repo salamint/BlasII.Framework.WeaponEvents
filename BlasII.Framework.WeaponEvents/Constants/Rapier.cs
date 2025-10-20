@@ -50,7 +50,7 @@ public enum RapierAttackID
 	FINISHER = -828582584,
 
 	/// <summary>ID: <c>WPN02_M013</c></summary>
-	AIR_CROSS = -828582585,
+	NORMAL_AIR_CROSS = -828582585,
 
 	/// <summary>ID: <c>WPN02_M013B</c></summary>
 	ELECTRIC_AIR_CROSS = -564343779

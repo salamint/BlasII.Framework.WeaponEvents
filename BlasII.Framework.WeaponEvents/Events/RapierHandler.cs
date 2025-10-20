@@ -89,7 +89,7 @@ public abstract class RapierHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnStormOfThrustsHit(AttackInfo info) {}
+	protected internal virtual void OnStormOfThrustsHit(RapierAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
@@ -106,6 +106,78 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// <summary>
 	/// </summary>
 	protected internal virtual void OnPowerfulStormOfThrustsHit(AttackInfo info) {}
+
+	/* Thrust attacks */
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnThrust(RapierAttackID attack) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnThrustHit(RapierAttackID attack, AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnNormalThrust() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnNormalThrustHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnElectricThrust() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnElectricThrustHit(AttackInfo info) {}
+
+	/* Air cross attacks */
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnAirCross(RapierAttackID attack) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnAirCrossHit(RapierAttackID attack, AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnNormalAirCross() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnNormalAirCrossHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnElectricAirCross() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnElectricAirCrossHit(AttackInfo info) {}
+
+	/* Finisher attacks */
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnFinisherAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnFinisherAttackHit(AttackInfo info) {}
+
+	/* Counter attacks */
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnDashCounterAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnDashCounterAttackHit(AttackInfo info) {}
 
 	/* Indicators */
 

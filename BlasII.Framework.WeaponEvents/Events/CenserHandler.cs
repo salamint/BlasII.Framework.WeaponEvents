@@ -83,12 +83,14 @@ public abstract class CenserHandler : CommonWeaponHandler
 	protected internal virtual void OnMidairSwingHit2(AttackInfo info) {}
 
 	/// <summary>
-	/// Called when the player ignites Veredicto TODO.
+	/// Called when the player ignites Veredicto on the ground with the upgrades
+	/// that damages the enemies nearby.
 	/// </summary>
 	protected internal virtual void OnIgnitionArea() {}
 
 	/// <summary>
-	/// TODO
+	/// Called when the player ignites Veredicto on the ground with the upgrades
+	/// that damages the enemies nearby, and it hits an enemy.
 	/// </summary>
 	protected internal virtual void OnIgnitionAreaHit(AttackInfo info) {}
 

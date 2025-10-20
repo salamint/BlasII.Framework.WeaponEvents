@@ -6,7 +6,6 @@ namespace BlasII.Framework.WeaponEvents.Constants;
 /// Aka. mace, censer, war censer.
 /// Heavy and slow attacks with extra range.
 /// Can be lit on fire for a damage boost and some combos.
-/// TODO: charged attacks
 /// </summary>
 public enum CenserAttackID
 {

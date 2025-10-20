@@ -151,6 +151,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.COMBO_4_BERSERK:
 				/* TODO */
+				Handlers.ForEach(handler => handler.OnCombo4());
 				break;
 		}
 	}
@@ -182,6 +183,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				break;
 			case BladeAttackID.COMBO_4_BERSERK:
 				/* TODO */
+				Handlers.ForEach(handler => handler.OnCombo4Hit(info));
 				break;
 			default:
 				LogUnsupportedAttackIDError(info.attackID);
