@@ -27,6 +27,49 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 
 		switch (attack)
 		{
+			case MeaCulpaAttackID.COMBO_1:
+			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.COMBO_2:
+			case MeaCulpaAttackID.COMBO_3:
+			case MeaCulpaAttackID.COMBO_3_ASCENDING:
+			case MeaCulpaAttackID.COMBO_3_SPIN:
+			case MeaCulpaAttackID.COMBO_4:
+				HandleComboAttack(attack);
+				break;
+			case MeaCulpaAttackID.CROUCH:
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_1:
+			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.MIDAIR_COMBO_2:
+				HandleMidairAttack(attack);
+				break;
+			case MeaCulpaAttackID.UP_SLASH:
+				Handlers.ForEach(handler => handler.OnUpSlashAttack());
+				break;
+			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnUpSlashAttack());
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttack(attack));
+				break;
+			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
+			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
+				HandleRetribution(attack);
+				break;
+			case MeaCulpaAttackID.PHANTOM_PROJECTILE:
+				Handlers.ForEach(handler => handler.OnPhantomProjectile());
+				break;
+			case MeaCulpaAttackID.LOWER_PLUNGING_STRIKE:
+			case MeaCulpaAttackID.HIGH_PLUNGING_STRIKE:
+				HandlePlungingStrike(attack);
+				break;
+			case MeaCulpaAttackID.CHARGED:
+				Handlers.ForEach(handler => handler.OnChargedAttack());
+				break;
+			case MeaCulpaAttackID.THRUST:
+				Handlers.ForEach(handler => handler.OnThrustAttack());
+				break;
+			case MeaCulpaAttackID.REMORSE_START:
+				Handlers.ForEach(handler => handler.OnRemorseStart());
+				break;
 			default:
 				LogUnsupportedAttackIDError(id);
 				break;
@@ -46,6 +89,213 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 
 		switch (attack)
 		{
+			case MeaCulpaAttackID.COMBO_1:
+			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.COMBO_2:
+			case MeaCulpaAttackID.COMBO_3:
+			case MeaCulpaAttackID.COMBO_3_ASCENDING:
+			case MeaCulpaAttackID.COMBO_3_SPIN:
+			case MeaCulpaAttackID.COMBO_4:
+				HandleComboAttackHit(attack, info);
+				break;
+			case MeaCulpaAttackID.CROUCH:
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_1:
+			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.MIDAIR_COMBO_2:
+				HandleMidairAttackHit(attack, info);
+				break;
+			case MeaCulpaAttackID.UP_SLASH:
+				Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
+				break;
+			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttackHit(attack, info));
+				break;
+			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
+			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
+				HandleRetributionHit(attack, info);
+				break;
+			case MeaCulpaAttackID.PHANTOM_PROJECTILE:
+				Handlers.ForEach(handler => handler.OnPhantomProjectileHit(info));
+				break;
+			case MeaCulpaAttackID.LOWER_PLUNGING_STRIKE:
+			case MeaCulpaAttackID.HIGH_PLUNGING_STRIKE:
+				HandlePlungingStrikeHit(attack, info);
+				break;
+			case MeaCulpaAttackID.CHARGED:
+				Handlers.ForEach(handler => handler.OnChargedAttackHit(info));
+				break;
+			case MeaCulpaAttackID.THRUST:
+				Handlers.ForEach(handler => handler.OnThrustAttackHit(info));
+				break;
+			case MeaCulpaAttackID.REMORSE_START:
+				Handlers.ForEach(handler => handler.OnRemorseStartHit(info));
+				break;
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
+	}
+
+	public void HandleComboAttack(MeaCulpaAttackID attack)
+	{
+		Handlers.ForEach(handler => handler.OnCombo(attack));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.COMBO_1:
+				Handlers.ForEach(handler => handler.OnCombo1());
+				break;
+			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnCombo1());
+				Handlers.ForEach(handler => handler.OnCombo1ProjectileSpawner());
+				break;
+			case MeaCulpaAttackID.COMBO_2:
+				Handlers.ForEach(handler => handler.OnCombo2());
+				break;
+			case MeaCulpaAttackID.COMBO_3:
+				Handlers.ForEach(handler => handler.OnCombo3());
+				break;
+			case MeaCulpaAttackID.COMBO_3_ASCENDING:
+				Handlers.ForEach(handler => handler.OnCombo3Ascending());
+				break;
+			case MeaCulpaAttackID.COMBO_3_SPIN:
+				Handlers.ForEach(handler => handler.OnCombo3Spin());
+				break;
+			case MeaCulpaAttackID.COMBO_4:
+				Handlers.ForEach(handler => handler.OnCombo4());
+				break;
+		}
+	}
+
+	public void HandleComboAttackHit(MeaCulpaAttackID attack, AttackInfo info)
+	{
+		Handlers.ForEach(handler => handler.OnComboHit(attack, info));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.COMBO_1:
+				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
+				Handlers.ForEach(handler => handler.OnCombo1ProjectileSpawnerHit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_2:
+				Handlers.ForEach(handler => handler.OnCombo2Hit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_3:
+				Handlers.ForEach(handler => handler.OnCombo3Hit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_3_ASCENDING:
+				Handlers.ForEach(handler => handler.OnCombo3AscendingHit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_3_SPIN:
+				Handlers.ForEach(handler => handler.OnCombo3SpinHit(info));
+				break;
+			case MeaCulpaAttackID.COMBO_4:
+				Handlers.ForEach(handler => handler.OnCombo4Hit(info));
+				break;
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
+	}
+
+	public void HandleMidairAttack(MeaCulpaAttackID attack)
+	{
+		Handlers.ForEach(handler => handler.OnMidairSlash(attack));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.MIDAIR_COMBO_1:
+				Handlers.ForEach(handler => handler.OnMidairSlash1());
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnMidairSlash1());
+				Handlers.ForEach(handler => handler.OnMidairSlash1ProjectileSpawner());
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_2:
+				Handlers.ForEach(handler => handler.OnMidairSlash2());
+				break;
+		}
+	}
+
+	public void HandleMidairAttackHit(MeaCulpaAttackID attack, AttackInfo info)
+	{
+		Handlers.ForEach(handler => handler.OnMidairSlashHit(attack, info));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.MIDAIR_COMBO_1:
+				Handlers.ForEach(handler => handler.OnMidairSlash1Hit(info));
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnMidairSlash1Hit(info));
+				Handlers.ForEach(handler => handler.OnMidairSlash1ProjectileSpawnerHit(info));
+				break;
+			case MeaCulpaAttackID.MIDAIR_COMBO_2:
+				Handlers.ForEach(handler => handler.OnMidairSlash2Hit(info));
+				break;
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
+	}
+
+	public void HandleRetribution(MeaCulpaAttackID attack)
+	{
+		Handlers.ForEach(handler => handler.OnRetribution(attack));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
+				Handlers.ForEach(handler => handler.OnNormalRetribution());
+				break;
+			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
+				Handlers.ForEach(handler => handler.OnPerfectRetribution());
+				break;
+		}
+	}
+
+	public void HandleRetributionHit(MeaCulpaAttackID attack, AttackInfo info)
+	{
+		Handlers.ForEach(handler => handler.OnRetributionHit(attack, info));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
+				Handlers.ForEach(handler => handler.OnNormalRetributionHit(info));
+				break;
+			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
+				Handlers.ForEach(handler => handler.OnPerfectRetributionHit(info));
+				break;
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
+	}
+
+	public void HandlePlungingStrike(MeaCulpaAttackID attack)
+	{
+		Handlers.ForEach(handler => handler.OnPlungingStrike(attack));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.LOWER_PLUNGING_STRIKE:
+				Handlers.ForEach(handler => handler.OnLowerPlungingStrike());
+				break;
+			case MeaCulpaAttackID.HIGH_PLUNGING_STRIKE:
+				Handlers.ForEach(handler => handler.OnHighPlungingStrike());
+				break;
+		}
+	}
+
+	public void HandlePlungingStrikeHit(MeaCulpaAttackID attack, AttackInfo info)
+	{
+		Handlers.ForEach(handler => handler.OnPlungingStrikeHit(attack, info));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.LOWER_PLUNGING_STRIKE:
+				Handlers.ForEach(handler => handler.OnLowerPlungingStrikeHit(info));
+				break;
+			case MeaCulpaAttackID.HIGH_PLUNGING_STRIKE:
+				Handlers.ForEach(handler => handler.OnHighPlungingStrikeHit(info));
+				break;
 			default:
 				LogUnsupportedAttackIDError(info.attackID);
 				break;

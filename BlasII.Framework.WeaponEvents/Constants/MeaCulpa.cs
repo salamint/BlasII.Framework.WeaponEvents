@@ -42,13 +42,13 @@ public enum MeaCulpaAttackID
 	MIDAIR_COMBO_2 = -575320331,
 
 	/// <summary>ID: <c>WPN101_M04</c></summary>
-	UP_ATTACK = 475940287,
+	UP_SLASH = 475940287,
 
 	/// <summary>ID: <c>WPN101_M04PS</c></summary>
-	UP_ATTACK_PROJECTILE_SPAWNER = 1066827054,
+	UP_SLASH_PROJECTILE_SPAWNER = 1066827054,
 
 	/// <summary>ID: <c>WPN101_M05_A</c></summary>
-	RETRIBUTION = -48918184,
+	NORMAL_RETRIBUTION = -48918184,
 
 	/// <summary>ID: <c>WPN101_M05_B</c></summary>
 	PERFECT_RETRIBUTION = 354366343,

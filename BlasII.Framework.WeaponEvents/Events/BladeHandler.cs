@@ -105,9 +105,9 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Up slash attack */
 
-	protected internal virtual void OnUpSlash() {}
+	protected internal virtual void OnUpSlashAttack() {}
 
-	protected internal virtual void OnUpSlashHit(AttackInfo info) {}
+	protected internal virtual void OnUpSlashAttackHit(AttackInfo info) {}
 
 	/* Counter attacks */
 

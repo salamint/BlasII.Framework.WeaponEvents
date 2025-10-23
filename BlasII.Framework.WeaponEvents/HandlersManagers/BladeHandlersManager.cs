@@ -48,7 +48,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleMidAirSlashAttack(attack);
 				break;
 			case BladeAttackID.UP_SLASH:
-				Handlers.ForEach(handler => handler.OnUpSlash());
+				Handlers.ForEach(handler => handler.OnUpSlashAttack());
 				break;
 			case BladeAttackID.NORMAL_RETRIBUTION:
 			case BladeAttackID.PERFECT_RETRIBUTION:
@@ -102,7 +102,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleMidAirSlashAttackHit(attack, info);
 				break;
 			case BladeAttackID.UP_SLASH:
-				Handlers.ForEach(handler => handler.OnUpSlashHit(info));
+				Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
 				break;
 			case BladeAttackID.NORMAL_RETRIBUTION:
 			case BladeAttackID.PERFECT_RETRIBUTION:
