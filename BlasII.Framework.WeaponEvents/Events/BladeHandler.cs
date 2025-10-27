@@ -19,7 +19,7 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// A shortcut to the common global current berserk mode value.
-	/// The setter has been overloaded to call the game's setter instead.
+	/// The getter and setter call the get and set methods of the player stats.
 	/// </summary>
 	public int CurrentBerserkModeValue
 	{
@@ -55,32 +55,119 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Combo attacks */
 
+	/// <summary>
+	/// Called when the player does one of the "combo" attacks. This refer to
+	/// the attacks the player can do if on ground and not looking up or down.
+	/// They can be chained to obtain special combos, this function is called
+	/// for any of those combo attacks (from first to last, with variants).
+	/// </summary>
 	protected internal virtual void OnCombo(BladeAttackID attack) {}
 
+	/// <summary>
+	/// Called when the player does one of the "combo" attack (see the <seealso
+	/// cref="OnCombo"/> method for reference), and hit an enemy with it.
+	/// </summary>
 	protected internal virtual void OnComboHit(BladeAttackID attack, AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the usual combo
+	/// sequence (when not following a previous combo attack).
+	/// </summary>
 	protected internal virtual void OnCombo1() {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the usual combo
+	/// sequence (when not following a previous combo attack), and hits an
+	/// enemy with it.
+	/// </summary>
 	protected internal virtual void OnCombo1Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the usual combo
+	/// sequence (when following the first combo attack).
+	/// </summary>
 	protected internal virtual void OnCombo2() {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the usual combo
+	/// sequence (when following the first combo attack), and hits an enemy.
+	/// </summary>
 	protected internal virtual void OnCombo2Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the third attack of the combo sequence (when
+	/// following the second combo attack), whether it is a normal attack,
+	/// ascending attack or spin attack.
+	/// </summary>
 	protected internal virtual void OnCombo3() {}
 
+	/// <summary>
+	/// Called when the player does the third attack of the combo sequence (when
+	/// following the second combo attack), whether it is a normal attack,
+	/// ascending attack or spin attack, and also hits an enemy with it.
+	/// </summary>
 	protected internal virtual void OnCombo3Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the normal third attack of the usual combo
+	/// sequence (when following the second combo attack).
+	/// This is different from the ascending or spin attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
+	protected internal virtual void OnCombo3Normal() {}
+
+	/// <summary>
+	/// Called when the player does the normal third attack of the usual combo
+	/// sequence (when following the second combo attack), and hits an enemy.
+	/// This is different from the ascending or spin attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
+	protected internal virtual void OnCombo3NormalHit(AttackInfo info) {}
+
+	/// <summary>
+	/// Called when the player does the ascending third attack of the usual
+	/// combo sequence (when following the second combo attack).
+	/// This is different from the normal or spin attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
 	protected internal virtual void OnCombo3Ascending() {}
 
+	/// <summary>
+	/// Called when the player does the ascending third attack of the usual
+	/// combo sequence (when following the second combo attack), and hits an
+	/// enemy with it.
+	/// This is different from the normal or spin attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
 	protected internal virtual void OnCombo3AscendingHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the spin third attack of the usual combo
+	/// sequence (when following the second combo attack).
+	/// This is different from the normal or ascending attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
 	protected internal virtual void OnCombo3Spin() {}
 
+	/// <summary>
+	/// Called when the player does the spin third attack of the usual combo
+	/// sequence (when following the second combo attack), and hits an enemey.
+	/// This is different from the normal or ascending attacks that can also be
+	/// executed on the third combo.
+	/// </summary>
 	protected internal virtual void OnCombo3SpinHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack).
+	/// </summary>
 	protected internal virtual void OnCombo4() {}
 
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack), and hits an
+	/// enemy with it.
+	/// </summary>
 	protected internal virtual void OnCombo4Hit(AttackInfo info) {}
 
 	/* Crouch attacks */
@@ -210,8 +297,16 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	protected internal virtual void OnBloodPactAttackHit(BladeAttackID attack, AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player starts the blood pact (berserk) mode of Ruego al
+	/// Alba. This plays an animation that damages enemies around the player.
+	/// </summary>
 	protected internal virtual void OnBloodPactStart() {}
 
+	/// <summary>
+	/// Called when the player starts the blood pact (berserk) mode of Ruego al
+	/// Alba, and hits an enemy during the start animation.
+	/// </summary>
 	protected internal virtual void OnBloodPactStartHit(AttackInfo info) {}
 
 	protected internal virtual void OnBloodPactSpecialAttack(BladeAttackID attack) {}
