@@ -94,6 +94,24 @@ public abstract class CenserHandler : CommonWeaponHandler
 	/// </summary>
 	protected internal virtual void OnIgnitionAreaHit(AttackInfo info) {}
 
+	/* Ignition or temper strikes */
+
+	/// <summary>
+	/// Called when the player ignites Veredicto right after a normal attack, or
+	/// after an ignition or temper strike, generating an ignition or temper
+	/// strike.
+	/// </summary>
+	protected internal virtual void OnIgnitionOrTemperStrike() {}
+
+	/// <summary>
+	/// Called when the player ignites Veredicto right after a normal attack, or
+	/// after an ignition or temper strike, generating an ignition or temper
+	/// strike, and hits an enemy with it.
+	/// The hit number is passed as a paramater, there is one call of this
+	/// method per hit.
+	/// </summary>
+	protected internal virtual void OnIgnitionOrTemperStrikeHit(AttackInfo info, int hit) {}
+
 	/// <summary>
 	/// Called when the player ignites Veredicto right after a normal attack, or
 	/// after a temper strike, generating an ignition strike.
@@ -104,8 +122,10 @@ public abstract class CenserHandler : CommonWeaponHandler
 	/// Called when the player ignites Veredicto right after a normal attack,
 	/// after a temper strike, generating an ignition strike, and hits an enemy
 	/// with it.
+	/// The hit number is passed as a paramater, there is one call of this
+	/// method per hit.
 	/// </summary>
-	protected internal virtual void OnIgnitionStrikeHit(AttackInfo info) {}
+	protected internal virtual void OnIgnitionStrikeHit(AttackInfo info, int hit) {}
 
 	/// <summary>
 	/// Called when the player ignites Veredicto right after a normal ignited
@@ -117,8 +137,10 @@ public abstract class CenserHandler : CommonWeaponHandler
 	/// Called when the player ignites Veredicto right after a normal ignited
 	/// attack, or after an ignition strike, generating a temper strike, and
 	/// hits an enemy with it.
+	/// The hit number is passed as a paramater, there is one call of this
+	/// method per hit.
 	/// </summary>
-	protected internal virtual void OnTemperStrikeHit(AttackInfo info) {}
+	protected internal virtual void OnTemperStrikeHit(AttackInfo info, int hit) {}
 
 	/// <summary>
 	/// Called when the player ignites Veredicto while in the air.

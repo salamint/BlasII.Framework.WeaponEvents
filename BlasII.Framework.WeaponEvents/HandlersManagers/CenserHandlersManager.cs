@@ -44,11 +44,11 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 				Handlers.ForEach(handler => handler.OnIgnitionArea());
 				break;
 			case CenserAttackID.IGNITION_STRIKE:
-				ModLog.Debug("Ignition Strike attack");
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrike());
 				Handlers.ForEach(handler => handler.OnIgnitionStrike());
 				break;
 			case CenserAttackID.TEMPER_STRIKE:
-				ModLog.Debug("Temper Strike attack");
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrike());
 				Handlers.ForEach(handler => handler.OnTemperStrike());
 				break;
 			case CenserAttackID.MIDAIR_IGNITION_STRIKE:
@@ -126,8 +126,6 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 	/// ID).
 	/// </summary>
 	public void HandleIgnitionOrTemperStrikeHit(CenserAttackID attack, AttackInfo info) {
-		Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info));
-
 		CenserIgnitionStrikeHit hit = (CenserIgnitionStrikeHit) info.attack.id;
 		if (!Enum.IsDefined(typeof(CenserIgnitionStrikeHit), hit))
 		{
@@ -138,12 +136,20 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		switch (hit)
 		{
 			case CenserIgnitionStrikeHit.IGNITION_STRIKE_HIT_1:
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrikeHit(info, 1));
+				Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info, 1));
+				break;
 			case CenserIgnitionStrikeHit.IGNITION_STRIKE_HIT_2:
-				Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info));
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrikeHit(info, 2));
+				Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info, 2));
 				break;
 			case CenserIgnitionStrikeHit.TEMPER_STRIKE_HIT_1:
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrikeHit(info, 1));
+				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info, 1));
+				break;
 			case CenserIgnitionStrikeHit.TEMPER_STRIKE_HIT_2:
-				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
+				Handlers.ForEach(handler => handler.OnIgnitionOrTemperStrikeHit(info, 2));
+				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info, 2));
 				break;
 			default:
 				ModLog.Error($"Error: Unsupported Ignition Strike hit ID for {Name}: {info.attack.id} {info.attack.name}");
