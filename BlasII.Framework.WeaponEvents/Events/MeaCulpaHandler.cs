@@ -197,28 +197,82 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// </summary>
 	protected internal virtual void OnCombo4Hit(AttackInfo info) {}
 
+	/* Crouch attacks */
+
+	/// <summary>
+	/// Called when the player attacks while crouched on the ground.
+	/// </summary>
+	protected internal virtual void OnCrouchAttack() {}
+
+	/// <summary>
+	/// Called when the player attacks while crouched on the ground, and hits an
+	/// enemy with this attack.
+	/// </summary>
+	protected internal virtual void OnCrouchAttackHit(AttackInfo info) {}
+
 	/* Mid air attacks */
 
 	/// <summary>
+	/// Called when the player attacks while in the air.
 	/// </summary>
 	protected internal virtual void OnMidairSlash(MeaCulpaAttackID attack) {}
 
+	/// <summary>
+	/// Called when the player attacks while in the air, and hits an enemy with
+	/// it.
+	/// </summary>
 	protected internal virtual void OnMidairSlashHit(MeaCulpaAttackID attack, AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo.
+	/// </summary>
 	protected internal virtual void OnMidairSlash1() {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, and hits an enemy with it.
+	/// </summary>
 	protected internal virtual void OnMidairSlash1Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, and spawns a phantom projectile.
+	/// </summary>
 	protected internal virtual void OnMidairSlash1ProjectileSpawner() {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, and spawns a phantom projectile, and hits an enemy with the
+	/// attack (not the projectile).
+	/// </summary>
 	protected internal virtual void OnMidairSlash1ProjectileSpawnerHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, but does not spawns a phantom projectile, due to the timing since
+	/// the last time a projectile has spawned.
+	/// </summary>
 	protected internal virtual void OnMidairSlash1NoProjectile() {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, but does not spawns a phantom projectile, due to the timing since
+	/// the last time a projectile has spawned, and hits an enemy with the
+	/// attack.
+	/// </summary>
 	protected internal virtual void OnMidairSlash1NoProjectileHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the mid air attack
+	/// combo.
+	/// </summary>
 	protected internal virtual void OnMidairSlash2() {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the mid air attack
+	/// combo, and hits an enemy with it.
+	/// </summary>
 	protected internal virtual void OnMidairSlash2Hit(AttackInfo info) {}
 
 	/* Charged attacks */
@@ -270,8 +324,8 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	protected internal virtual void OnPhantomProjectileHit(AttackInfo info) {}
 
 	/// <summary>
-	/// Called when the player can shoot a phantom projectil agin using the Mea
-	/// Culpa.
+	/// Called when the Mea Culpa's phantom projectile's cooldown has ended,
+	/// allowing the player to spawn a new projectiles with their next attack.
 	/// </summary>
 	protected internal virtual void OnPhantomProjectileReady() {}
 
@@ -326,6 +380,18 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// This only works on the ground.
 	/// </summary>
 	protected internal virtual void OnUpSlashAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// Called when the player attacks upward with Mea Culpa.
+	/// This only works in the air.
+	/// </summary>
+	protected internal virtual void OnMidairUpSlashAttack() {}
+
+	/// <summary>
+	/// Called when the player attacks upward with Mea Culpa, and hits an enemy.
+	/// This only works in the air.
+	/// </summary>
+	protected internal virtual void OnMidairUpSlashAttackHit(AttackInfo info) {}
 
 	/* Plunging strike */
 

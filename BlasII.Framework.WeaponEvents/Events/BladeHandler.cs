@@ -178,22 +178,52 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Mid air attacks */
 
+	/// <summary>
+	/// Called when the player attacks while in the air.
+	/// </summary>
 	protected internal virtual void OnMidAirSlash(BladeAttackID attack) {}
 
+	/// <summary>
+	/// Called when the player attacks while in the air, and hits an enemy with
+	/// it.
+	/// </summary>
 	protected internal virtual void OnMidAirSlashHit(BladeAttackID attack, AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo.
+	/// </summary>
 	protected internal virtual void OnMidAirSlash1() {}
 
+	/// <summary>
+	/// Called when the player does the first attack of the mid air attack
+	/// combo, and hits an enemy with it.
+	/// </summary>
 	protected internal virtual void OnMidAirSlash1Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the mid air attack
+	/// combo.
+	/// </summary>
 	protected internal virtual void OnMidAirSlash2() {}
 
+	/// <summary>
+	/// Called when the player does the second attack of the mid air attack
+	/// combo, and hits an enemy with it.
+	/// </summary>
 	protected internal virtual void OnMidAirSlash2Hit(AttackInfo info) {}
 
 	/* Up slash attack */
 
+	/// <summary>
+	/// Called when the player attack upward while on the ground.
+	/// </summary>
 	protected internal virtual void OnUpSlashAttack() {}
 
+	/// <summary>
+	/// Called when the player attack upward while on the ground, and hits an
+	/// enemy.
+	/// </summary>
 	protected internal virtual void OnUpSlashAttackHit(AttackInfo info) {}
 
 	/* Counter attacks */
