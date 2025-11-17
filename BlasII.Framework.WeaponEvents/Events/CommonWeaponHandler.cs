@@ -20,22 +20,22 @@ public abstract class CommonWeaponHandler
 	/// <summary>
 	/// Called when the player attacks with a weapon.
 	/// </summary>
-	protected internal virtual void OnAttack(AttackID id) {}
+	public virtual void OnAttack(AttackID id) {}
 
 	/// <summary>
 	/// Called when the player attacks with a weapon and hits an enemy.
 	/// </summary>
-	protected internal virtual void OnAttackHit(AttackInfo info) {}
+	public virtual void OnAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// Called when the player unequips the currently held weapon.
 	/// </summary>
-	protected internal virtual void OnUnequip() {}
+	public virtual void OnUnequip() {}
 
 	/// <summary>
 	/// Called when the player equips a new weapon.
 	/// </summary>
-	protected internal virtual void OnEquip() {}
+	public virtual void OnEquip() {}
 
 	/// <summary>
 	/// Called when the player rests at a Prie Dieu.
@@ -43,5 +43,5 @@ public abstract class CommonWeaponHandler
 	/// getting reseted, Veredicto getting extinguished, and Ruego or Mea Culpa's
 	/// berserk mode deactivating and their jauge reseting.
 	/// </summary>
-	protected internal virtual void OnRestAtPrieDieu() {}
+	public virtual void OnRestAtPrieDieu() {}
 }

@@ -48,12 +48,15 @@ public abstract class AbstractHandlersManager<HandlerType> where HandlerType : C
 	/// <summary>
 	/// Instantiate every subclass of the type <typeparamref name="HandlerType"/>,
 	/// then adds the instances to the list of handlers.
+	/// The handlers are sorted by their lazyness.
 	/// </summary>
 	public void RegisterAllHandlers()
 	{
 
 		string assemblyLocation = Assembly.GetExecutingAssembly().Location;
 		string pluginsDir = Path.GetDirectoryName(assemblyLocation);
+		SortedDictionary<int, List<HandlerType>> foundHandlers = new ();
+		HandlerLazynessAttribute lazynessAttribute = null;
 
 		foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 		{
@@ -66,13 +69,44 @@ public abstract class AbstractHandlersManager<HandlerType> where HandlerType : C
 					continue;
 				}
 
-				Handlers.AddRange(
-						assembly.GetTypes()
+				// Fecthing the types that inherit from the HandlerType
+				IEnumerable<HandlerType> handlers = assembly.GetTypes()
 						.Where(thisType => thisType.IsSubclassOf(typeof(HandlerType)))
-						.Select(handlerType => (HandlerType) Activator.CreateInstance(handlerType))
-						);
+						.Select(handlerType => (HandlerType) Activator.CreateInstance(handlerType));
+
+				foreach (HandlerType handler in handlers)
+				{
+					// Retrieving the lazyness attribute of the class/type
+					lazynessAttribute = (HandlerLazynessAttribute) handler.GetType().GetCustomAttribute(typeof(HandlerLazynessAttribute));
+
+					// Calculating the lazyness (0 is the default)
+					int lazyness = 0;
+					if (lazynessAttribute != null)
+					{
+						lazyness = lazynessAttribute.Lazyness;
+					}
+
+					// Creating the handler list for this lazyness
+					// if it didn't already exist
+					if (!foundHandlers.ContainsKey(lazyness))
+					{
+						foundHandlers.Add(lazyness, new ());
+					}
+
+					// Adding the handler to that list
+					List<HandlerType> handlersOfSameLazyness = foundHandlers[lazyness];
+					handlersOfSameLazyness.Add(handler);
+				}
 			}
 			catch (NotSupportedException) { }
+		}
+
+		// Adding each handler list to the final list in the order of their
+		// lazyness, from smallest to largest, although the order of the
+		// handlers with the same lazyness can't be guaranteed
+		foreach (List<HandlerType> handlersOfSameLazyness in foundHandlers.Values)
+		{
+			Handlers.AddRange(handlersOfSameLazyness);
 		}
         ModLog.Info($"Registered {Handlers.Count()} {nameof(HandlerType)}");
 	}
