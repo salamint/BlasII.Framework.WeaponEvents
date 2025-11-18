@@ -27,7 +27,10 @@ the framework, and you won't ever need to use.
 
 ## Usage
 
-### Example
+### Simple example
+
+This is an example of a simple handler that prints a message in the modding
+console whenever the player gains a new indicator with Sarmiento y Centella.
 
 ```cs
 using BlasII.Framework.WeaponEvents.Events;
@@ -52,6 +55,72 @@ public class MyCustomRapier : RapierHandler
     }
 }
 ```
+
+### Example using lazyness
+
+If for example, you are a modder that wants to execute a piece of code before or
+after a precise handler, you can use something called **lazyness**.
+
+You can specify the lazyness of your handler class at its declaration like this:
+
+```cs
+
+[HandlerLazyness(10)]
+public class AHandlerThatIsLazy : RapierHandler
+{
+    // ...
+}
+```
+
+The higher the value you give to `HandlerLazyness`, the lazier your handler will
+be. A lazy handler will **always** execute after the handlers that are less
+lazy. Negative values are also accepted, this makes your handler less lazy than
+others and will execute it before the others.
+
+By default, every handler has a lazyness of `0`, and the order of execution of
+handlers with the same lazyness cannot be guaranteed.
+So if you wished to execute a special piece of code before and after another
+handler, consider this example:
+
+```cs
+using BlasII.Framework.WeaponEvents.Events;
+using BlasII.ModdingAPI;
+
+namespace BlasII.AnotherMod;
+
+[HandlerLazyness(-10)]
+public class LeastLazyHandler : RapierHandler
+{
+	protected override void OnIndicator(int tier)
+    {
+        ModLog.Debug("This will be executed before!");
+    }
+}
+
+[HandlerLazyness(10)]
+public class MostLazyHandler : RapierHandler
+{
+	protected override void OnIndicator(int tier)
+    {
+        ModLog.Debug("This will be executed after!");
+    }
+}
+```
+
+If you then compile this code, and load this mod, and the one of the first
+example, this is what you will see after gaining your first Sarmiento y Centella
+indicator:
+```
+This will be executed before!
+Indicator gained! Current indicator level: 1
+This will be executed after!
+```
+
+From there, you should be able to implement most of your features, and also
+execute some of them before/after the ones of another mod.
+
+If you have any feature request, please open an issue with the feature "request
+tag".
 
 ### Mods that use this framework
 
