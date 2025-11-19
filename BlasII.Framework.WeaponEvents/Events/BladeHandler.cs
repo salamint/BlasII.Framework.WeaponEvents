@@ -360,8 +360,16 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	/* Blood pact */
 
+	/// <summary>
+	/// Called when the player any type of attack during the blood pact, causing
+	/// them to become stronger with a bigger range.
+	/// </summary>
 	public virtual void OnBloodPactAttack(BladeAttackID attack) {}
 
+	/// <summary>
+	/// Called when the player any type of attack during the blood pact, and
+	/// hits an enemy with it.
+	/// </summary>
 	public virtual void OnBloodPactAttackHit(BladeAttackID attack, AttackInfo info) {}
 
 	/// <summary>
@@ -376,18 +384,43 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// </summary>
 	public virtual void OnBloodPactStartHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, only available during
+	/// the blood pact.
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttack(BladeAttackID attack) {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, only available during
+	/// the blood pact, and hits an enemy with it
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttackHit(BladeAttackID attack, AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, while on the ground.
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttackGround() {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, while on the ground, and
+	/// hits an enemy with it.
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttackGroundHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, while in the air.
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttackMidAir() {}
 
+	/// <summary>
+	/// Called when the player uses the special attack, while in the air, and
+	/// hits an enemy with it.
+	/// </summary>
 	public virtual void OnBloodPactSpecialAttackMidAirHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the blood pact comes to an end.
+	/// </summary>
 	public virtual void OnBloodPactEnd() {}
 }
 

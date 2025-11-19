@@ -60,8 +60,8 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandlePlungingStrikeAttack(attack);
 				break;
 			case BladeAttackID.BLOODPACT_START:
-			case BladeAttackID.BLOODPACT_SPECIAL:
-			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_ON_GROUND:
+			case BladeAttackID.BLOODPACT_SPECIAL_MIDAIR:
 				HandleBloodPactAttack(attack);
 				break;
 			default:
@@ -114,8 +114,8 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandlePlungingStrikeAttackHit(attack, info);
 				break;
 			case BladeAttackID.BLOODPACT_START:
-			case BladeAttackID.BLOODPACT_SPECIAL:
-			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_ON_GROUND:
+			case BladeAttackID.BLOODPACT_SPECIAL_MIDAIR:
 				HandleBloodPactAttackHit(attack, info);
 				break;
 			default:
@@ -314,11 +314,11 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 			case BladeAttackID.BLOODPACT_START:
 				Handlers.ForEach(handler => handler.OnBloodPactStart());
 				break;
-			case BladeAttackID.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_ON_GROUND:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttack(attack));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackGround());
 				break;
-			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_MIDAIR:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttack(attack));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAir());
 				break;
@@ -335,11 +335,11 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 			case BladeAttackID.BLOODPACT_START:
 				Handlers.ForEach(handler => handler.OnBloodPactStartHit(info));
 				break;
-			case BladeAttackID.BLOODPACT_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_ON_GROUND:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackHit(attack, info));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackGroundHit(info));
 				break;
-			case BladeAttackID.BLOODPACT_MIDAIR_SPECIAL:
+			case BladeAttackID.BLOODPACT_SPECIAL_MIDAIR:
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackHit(attack, info));
 				Handlers.ForEach(handler => handler.OnBloodPactSpecialAttackMidAirHit(info));
 				break;
