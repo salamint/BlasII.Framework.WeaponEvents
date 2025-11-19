@@ -86,7 +86,6 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// The projectile's cooldown is then reset, and the player needs to stop
 	/// attacking for a certain amount of time before being able to spawn a new
 	/// projectile.
-	/// TODO
 	/// </summary>
 	public virtual void OnCombo1ProjectileSpawnerHit(AttackInfo info) {}
 
@@ -105,7 +104,6 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// spawn a projectile, and also hist an enemy with his attack.
 	/// This happens when the projectile has already spawned not long ago, and
 	/// is still in cooldown.
-	/// TODO
 	/// </summary>
 	public virtual void OnCombo1NoProjectileHit(AttackInfo info) {}
 

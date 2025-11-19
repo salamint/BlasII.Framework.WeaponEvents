@@ -154,6 +154,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 		{
 			case MeaCulpaAttackID.COMBO_1:
 				Handlers.ForEach(handler => handler.OnCombo1());
+				Handlers.ForEach(handler => handler.OnCombo1NoProjectile());
 				break;
 			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnCombo1());
@@ -189,6 +190,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 		{
 			case MeaCulpaAttackID.COMBO_1:
 				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
+				Handlers.ForEach(handler => handler.OnCombo1NoProjectileHit(info));
 				break;
 			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
@@ -227,6 +229,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 		{
 			case MeaCulpaAttackID.MIDAIR_COMBO_1:
 				Handlers.ForEach(handler => handler.OnMidairSlash1());
+				Handlers.ForEach(handler => handler.OnMidairSlash1NoProjectile());
 				break;
 			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnMidairSlash1());
@@ -250,6 +253,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 		{
 			case MeaCulpaAttackID.MIDAIR_COMBO_1:
 				Handlers.ForEach(handler => handler.OnMidairSlash1Hit(info));
+				Handlers.ForEach(handler => handler.OnMidairSlash1NoProjectileHit(info));
 				break;
 			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnMidairSlash1Hit(info));
