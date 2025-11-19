@@ -170,10 +170,47 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// </summary>
 	public virtual void OnCombo4Hit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack), but the 4th
+	/// attack is the unupgraded version (without the blood ripple).
+	/// </summary>
+	public virtual void OnCombo4Normal() {}
+
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack), but the 4th
+	/// attack is the unupgraded version (without the blood ripple), and the
+	/// playerhits an enemy with this attack.
+	/// </summary>
+	public virtual void OnCombo4NormalHit(AttackInfo info) {}
+
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack), but the 4th
+	/// attack is the upgraded version (with the blood ripple).
+	/// </summary>
+	public virtual void OnCombo4Upgraded() {}
+
+	/// <summary>
+	/// Called when the player does the fourth attack of the usual combo
+	/// sequence (when following the normal third combo attack), but the 4th
+	/// attack is the upgraded version (with the blood ripple), and the player
+	/// hits an enemy with this attack.
+	/// </summary>
+	public virtual void OnCombo4UpgradedHit(AttackInfo info) {}
+
 	/* Crouch attacks */
 
+	/// <summary>
+	/// Called when the player attacks while crouched on the ground.
+	/// </summary>
 	public virtual void OnCrouchAttack() {}
 
+	/// <summary>
+	/// Called when the player attacks while crouched on the ground, and hits an
+	/// enemy with this attack.
+	/// </summary>
 	public virtual void OnCrouchAttackHit(AttackInfo info) {}
 
 	/* Mid air attacks */
