@@ -23,182 +23,182 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// The normal behavior in that case, is Sarmiento y Centella's indicator
 	/// being reset.
 	/// </summary>
-	protected internal virtual void OnHitReceived(AttackInfo hit) {}
+	public virtual void OnHitReceived(AttackInfo hit) {}
 
 	/* Normal attacks */
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalAttack() {}
+	public virtual void OnNormalAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalAttackHit(AttackInfo info) {}
+	public virtual void OnNormalAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnDiagonalAttack() {}
+	public virtual void OnDiagonalAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnDiagonalAttackHit(AttackInfo info) {}
+	public virtual void OnDiagonalAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnCrouchedAttack() {}
+	public virtual void OnCrouchedAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnCrouchedAttackHit(AttackInfo info) {}
+	public virtual void OnCrouchedAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnVerticalAttack() {}
+	public virtual void OnVerticalAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnVerticalAttackHit(AttackInfo info) {}
+	public virtual void OnVerticalAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirAttack() {}
+	public virtual void OnMidAirAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirAttackHit(AttackInfo info) {}
+	public virtual void OnMidAirAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirDiagonalAttack() {}
+	public virtual void OnMidAirDiagonalAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirDiagonalAttackHit(AttackInfo info) {}
+	public virtual void OnMidAirDiagonalAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirPogo() {}
+	public virtual void OnMidAirPogo() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnMidAirPogoHit(AttackInfo info) {}
+	public virtual void OnMidAirPogoHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnStormOfThrusts(RapierAttackID attack) {}
+	public virtual void OnStormOfThrusts(RapierAttackID attack) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnStormOfThrustsHit(RapierAttackID attack, AttackInfo info) {}
+	public virtual void OnStormOfThrustsHit(RapierAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnWeakStormOfThrusts() {}
+	public virtual void OnWeakStormOfThrusts() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnWeakStormOfThrustsHit(AttackInfo info) {}
+	public virtual void OnWeakStormOfThrustsHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnPowerfulStormOfThrusts() {}
+	public virtual void OnPowerfulStormOfThrusts() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnPowerfulStormOfThrustsHit(AttackInfo info) {}
+	public virtual void OnPowerfulStormOfThrustsHit(AttackInfo info) {}
 
 	/* Thrust attacks */
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnThrust(RapierAttackID attack) {}
+	public virtual void OnThrust(RapierAttackID attack) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnThrustHit(RapierAttackID attack, AttackInfo info) {}
+	public virtual void OnThrustHit(RapierAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalThrust() {}
+	public virtual void OnNormalThrust() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalThrustHit(AttackInfo info) {}
+	public virtual void OnNormalThrustHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnElectricThrust() {}
+	public virtual void OnElectricThrust() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnElectricThrustHit(AttackInfo info) {}
+	public virtual void OnElectricThrustHit(AttackInfo info) {}
 
 	/* Air cross attacks */
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnAirCross(RapierAttackID attack) {}
+	public virtual void OnAirCross(RapierAttackID attack) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnAirCrossHit(RapierAttackID attack, AttackInfo info) {}
+	public virtual void OnAirCrossHit(RapierAttackID attack, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalAirCross() {}
+	public virtual void OnNormalAirCross() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnNormalAirCrossHit(AttackInfo info) {}
+	public virtual void OnNormalAirCrossHit(AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnElectricAirCross() {}
+	public virtual void OnElectricAirCross() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnElectricAirCrossHit(AttackInfo info) {}
+	public virtual void OnElectricAirCrossHit(AttackInfo info) {}
 
 	/* Finisher attacks */
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnFinisherAttack() {}
+	public virtual void OnFinisherAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnFinisherAttackHit(AttackInfo info) {}
+	public virtual void OnFinisherAttackHit(AttackInfo info) {}
 
 	/* Counter attacks */
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnDashCounterAttack() {}
+	public virtual void OnDashCounterAttack() {}
 
 	/// <summary>
 	/// </summary>
-	protected internal virtual void OnDashCounterAttackHit(AttackInfo info) {}
+	public virtual void OnDashCounterAttackHit(AttackInfo info) {}
 
 	/* Indicators */
 
 	/// <summary>
 	/// Called when the player fills an indicator of Sarmiento y Centella.
 	/// </summary>
-	protected internal virtual void OnIndicator(int tier) {}
+	public virtual void OnIndicator(int tier) {}
 
 	/// <summary>
 	/// Called when the player fills the first indicator of Sarmiento y Centella.
 	/// </summary>
-	protected internal virtual void OnIndicator1() {}
+	public virtual void OnIndicator1() {}
 
 	/// <summary>
 	/// Called when the player fills the second indicator of Sarmiento y Centella.
 	/// </summary>
-	protected internal virtual void OnIndicator2() {}
+	public virtual void OnIndicator2() {}
 
 	/// <summary>
 	/// Called when the player fills the third indicator of Sarmiento y Centella.
 	/// </summary>
-	protected internal virtual void OnIndicator3() {}
+	public virtual void OnIndicator3() {}
 }
 
