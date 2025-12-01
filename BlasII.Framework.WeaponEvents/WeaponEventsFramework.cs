@@ -5,6 +5,7 @@ using Il2Cpp;
 using Il2CppGame.Components.Attack;
 using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components;
+using Il2CppTGK.Game.Components.Attack.Data;
 
 namespace BlasII.Framework.WeaponEvents;
 
@@ -146,6 +147,52 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.Handlers.ForEach(handler => handler.OnEquip());
+				break;
+		}
+	}
+
+	protected internal void HandleAttack(AttackID id)
+	{
+		WeaponHandlersManager.HandleAttack(id);
+		switch (CurrentWeapon)
+		{
+			case Weapon.NONE:
+				ModLog.Error("Error: Attack occured while no weapon is equipped!");
+				break;
+			case Weapon.CENSER:
+				CenserHandlersManager.HandleAttack(id);
+				break;
+			case Weapon.RAPIER:
+				RapierHandlersManager.HandleAttack(id);
+				break;
+			case Weapon.BLADE:
+				BladeHandlersManager.HandleAttack(id);
+				break;
+			case Weapon.MEA_CULPA:
+				MeaCulpaHandlersManager.HandleAttack(id);
+				break;
+		}
+	}
+
+	protected internal void HandleAttackHit(AttackInfo info)
+	{
+		WeaponHandlersManager.HandleAttackHit(info);
+		switch (CurrentWeapon)
+		{
+			case Weapon.NONE:
+				ModLog.Error("Error: Attack occured while no weapon is equipped!");
+				break;
+			case Weapon.CENSER:
+				CenserHandlersManager.HandleAttackHit(info);
+				break;
+			case Weapon.RAPIER:
+				RapierHandlersManager.HandleAttackHit(info);
+				break;
+			case Weapon.BLADE:
+				BladeHandlersManager.HandleAttackHit(info);
+				break;
+			case Weapon.MEA_CULPA:
+				MeaCulpaHandlersManager.HandleAttackHit(info);
 				break;
 		}
 	}
