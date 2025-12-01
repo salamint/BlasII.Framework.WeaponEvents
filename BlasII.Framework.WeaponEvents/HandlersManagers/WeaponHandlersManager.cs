@@ -4,8 +4,12 @@ using Il2CppTGK.Game.Components.Attack.Data;
 namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 
 
+/// <summary>
+/// Manages the handlers for no particular weapon.
+/// </summary>
 public class WeaponHandlersManager : AbstractHandlersManager<WeaponHandler>
 {
+	/// <summary>Calls the base class constructor.</summary>
 	public WeaponHandlersManager() : base() {}
 
 	public override void HandleAttack(AttackID id)

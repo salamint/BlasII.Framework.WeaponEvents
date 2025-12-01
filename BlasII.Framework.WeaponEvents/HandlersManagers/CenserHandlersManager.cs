@@ -10,13 +10,21 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 /// </summary>
 public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 {
+	/// <summary>Calls the base class constructor.</summary>
 	public CenserHandlersManager() : base() {}
 
+	/// <summary>
+	/// Calls the corresponding methods for Veredicto's attacks.
+	/// </summary>
 	public override void HandleAttack(AttackID id)
 	{
 		Handlers.ForEach(handler => handler.OnAttack(id));
 	}
 
+	/// <summary>
+	/// Calls the corresponding methods for Veredicto's attacks that hit at
+	/// least one enemy.
+	/// </summary>
 	public override void HandleAttackHit(AttackInfo info)
 	{
 		Handlers.ForEach(handler => handler.OnAttackHit(info));
@@ -57,9 +65,15 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 			case CenserAttack.CHARGED_ATTACK:
 				/* TODO */
 				break;
+			default:
+				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {info.attackID.id}");
+				break;
 		}
 	}
 
+	/// <summary>
+	/// Calls the toggled and extinguish methods when Veredicto is extinguished.
+	/// </summary>
 	public void HandleExtinguish()
 	{
 		Handlers.ForEach(handler => handler.OnToggled());
@@ -67,6 +81,9 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		Handlers.ForEach(handler => handler.OnExtinguished());
 	}
 
+	/// <summary>
+	/// Calls the toggled and ignited methods when Veredicto is ignited.
+	/// </summary>
 	public void HandleIgnition()
 	{
 		Handlers.ForEach(handler => handler.OnToggled());

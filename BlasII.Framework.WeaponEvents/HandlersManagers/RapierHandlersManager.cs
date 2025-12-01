@@ -4,8 +4,12 @@ using Il2CppTGK.Game.Components.Attack.Data;
 namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 
 
+/// <summary>
+/// Manages the handlers for Sarmiento y Centella.
+/// </summary>
 public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 {
+	/// <summary>Calls the base class constructor.</summary>
 	public RapierHandlersManager() : base() {}
 
 	public override void HandleAttack(AttackID id)
