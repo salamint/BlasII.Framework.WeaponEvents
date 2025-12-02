@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 
 namespace BlasII.Framework.WeaponEvents;
 
