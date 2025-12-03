@@ -45,3 +45,21 @@ public enum CenserAttackID
 	/// <summary>ID: <c>WPN01_M09C</c></summary>
 	CHARGED_ATTACK = -544146170
 }
+
+
+/// <summary>
+/// </summary>
+public enum CenserIgnitionStrikeHit
+{
+	/// <summary>ID: <c>WPN01_M05P_DMG01 -  Ignition Strike Hit 1 Ignition</c></summary>
+	IGNITION_STRIKE_HIT_1 = 1539163584,
+
+	/// <summary>ID: <c>WPN01_M05P_DMG02 -  Ignition Strike Hit 2 Ignition</c></summary>
+	IGNITION_STRIKE_HIT_2 = 1279944314,
+
+	/// <summary>ID: <c>WPN01_M05B_DMG01 - Temper Strike Hit 1</c></summary>
+	TEMPER_STRIKE_HIT_1 = -303004343,
+
+	/// <summary>ID: <c>WPN01_M05B_DMG02 -  Temper Strike Hit 2</c></summary>
+	TEMPER_STRIKE_HIT_2 = -1332694291
+}
