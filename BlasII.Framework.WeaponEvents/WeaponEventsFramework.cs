@@ -40,7 +40,7 @@ public class WeaponEventsFramework : BlasIIMod
 	public MeaCulpaHandlersManager MeaCulpaHandlersManager { get; private set; }
 
 
-	/* API */
+	/* Quick access game objects */
 
 	/// <summary>Represents the currently equipped weapon.</summary>
 	public Weapon CurrentWeapon { get; protected internal set; } = Weapon.NONE;
@@ -66,6 +66,11 @@ public class WeaponEventsFramework : BlasIIMod
 
 	/* Methods */
 
+	/// <summary>
+	/// Initializes a new instance of the framework.
+	/// It creates empty lists of handlers managers for each weapon kind (even
+	/// the common weapon manager).
+	/// </summary>
     internal WeaponEventsFramework() :
 		base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION)
 	{
@@ -152,6 +157,13 @@ public class WeaponEventsFramework : BlasIIMod
 		}
 	}
 
+	/// <summary>
+	/// The global handler for when an attack is produced.
+	/// This method is called whenever the player attacks, no matter the weapon
+	/// in use or whether the attack hits an enemy or not.
+	/// It proceeds to call the corresponding handler managers depending on the
+	/// weapon.
+	/// </summary>
 	protected internal void HandleAttack(AttackID id)
 	{
 		WeaponHandlersManager.HandleAttack(id);
@@ -175,8 +187,20 @@ public class WeaponEventsFramework : BlasIIMod
 		}
 	}
 
+	/// <summary>
+	/// The global handler for when an attack is produced.
+	/// This method is called whenever the player attacks, no matter the weapon
+	/// in use, but only if the attack hits an enemy.
+	/// It proceeds to call the corresponding handler managers depending on the
+	/// weapon.
+	/// </summary>
 	protected internal void HandleAttackHit(AttackInfo info)
 	{
+		if (info.attackReceiver == null)
+		{
+			return;
+		}
+
 		WeaponHandlersManager.HandleAttackHit(info);
 		switch (CurrentWeapon)
 		{
@@ -198,6 +222,11 @@ public class WeaponEventsFramework : BlasIIMod
 		}
 	}
 
+	/// <summary>
+	/// The global handler for when the player rests at a prie dieu.
+	/// It proceeds to call the corresponding handler managers depending on the
+	/// weapon.
+	/// </summary>
 	protected internal void HandleRestAtPrieDieu()
 	{
 		WeaponHandlersManager.HandleRestAtPrieDieu();
