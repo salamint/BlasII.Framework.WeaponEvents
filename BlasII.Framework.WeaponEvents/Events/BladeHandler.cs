@@ -23,12 +23,19 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// </summary>
 	public int CurrentBerserkModeValue
 	{
-		get => Main.WeaponEventsFramework.CurrentBerserkModeValue;
+		get
+		{
+			if (BerserkModeFiller != null)
+			{
+				return BerserkModeFiller.stats.GetCurrentValue(BerserkModeFiller.berserkModeStatID);
+			}
+			return 0;
+		}
 		set
 		{
 			if (BerserkModeFiller != null)
 			{
-				BerserkModeFiller.SetCurrentBerserkModeValue(value);
+				BerserkModeFiller.stats.SetCurrentValue(BerserkModeFiller.berserkModeStatID, value);
 			}
 		}
 	}
