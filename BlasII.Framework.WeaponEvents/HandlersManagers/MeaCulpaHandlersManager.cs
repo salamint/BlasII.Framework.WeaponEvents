@@ -44,18 +44,16 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 				HandleMidairAttack(attack);
 				break;
 			case MeaCulpaAttackID.UP_SLASH:
-				Handlers.ForEach(handler => handler.OnUpSlashAttack());
-				break;
 			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
-				Handlers.ForEach(handler => handler.OnUpSlashAttack());
-				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttack(attack));
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH_PROJECTILE_SPAWNER:
+				HandleUpSlashAttack(attack);
 				break;
 			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
 			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
 				HandleRetribution(attack);
 				break;
 			case MeaCulpaAttackID.PHANTOM_PROJECTILE:
-				Handlers.ForEach(handler => handler.OnPhantomProjectile());
 				break;
 			case MeaCulpaAttackID.LOWER_PLUNGING_STRIKE:
 			case MeaCulpaAttackID.HIGH_PLUNGING_STRIKE:
@@ -106,11 +104,10 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 				HandleMidairAttackHit(attack, info);
 				break;
 			case MeaCulpaAttackID.UP_SLASH:
-				Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
-				break;
 			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
-				Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
-				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttackHit(attack, info));
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH_PROJECTILE_SPAWNER:
+				HandleUpSlashAttackHit(attack, info);
 				break;
 			case MeaCulpaAttackID.NORMAL_RETRIBUTION:
 			case MeaCulpaAttackID.PERFECT_RETRIBUTION:
@@ -149,6 +146,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnCombo1());
 				Handlers.ForEach(handler => handler.OnCombo1ProjectileSpawner());
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttack(attack));
 				break;
 			case MeaCulpaAttackID.COMBO_2:
 				Handlers.ForEach(handler => handler.OnCombo2());
@@ -179,6 +177,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 			case MeaCulpaAttackID.COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnCombo1Hit(info));
 				Handlers.ForEach(handler => handler.OnCombo1ProjectileSpawnerHit(info));
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttackHit(attack, info));
 				break;
 			case MeaCulpaAttackID.COMBO_2:
 				Handlers.ForEach(handler => handler.OnCombo2Hit(info));
@@ -212,6 +211,7 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnMidairSlash1());
 				Handlers.ForEach(handler => handler.OnMidairSlash1ProjectileSpawner());
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttack(attack));
 				break;
 			case MeaCulpaAttackID.MIDAIR_COMBO_2:
 				Handlers.ForEach(handler => handler.OnMidairSlash2());
@@ -230,9 +230,45 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 			case MeaCulpaAttackID.MIDAIR_COMBO_1_PROJECTILE_SPAWNER:
 				Handlers.ForEach(handler => handler.OnMidairSlash1Hit(info));
 				Handlers.ForEach(handler => handler.OnMidairSlash1ProjectileSpawnerHit(info));
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttackHit(attack, info));
 				break;
 			case MeaCulpaAttackID.MIDAIR_COMBO_2:
 				Handlers.ForEach(handler => handler.OnMidairSlash2Hit(info));
+				break;
+			default:
+				LogUnsupportedAttackIDError(info.attackID);
+				break;
+		}
+	}
+
+	public void HandleUpSlashAttack(MeaCulpaAttackID attack)
+	{
+		// TODO
+		Handlers.ForEach(handler => handler.OnUpSlashAttack());
+		switch (attack)
+		{
+			case MeaCulpaAttackID.UP_SLASH:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH:
+				break;
+			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttack(attack));
+				break;
+		}
+	}
+
+	public void HandleUpSlashAttackHit(MeaCulpaAttackID attack, AttackInfo info)
+	{
+		// TODO
+		Handlers.ForEach(handler => handler.OnUpSlashAttackHit(info));
+		switch (attack)
+		{
+			case MeaCulpaAttackID.UP_SLASH:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH:
+				break;
+			case MeaCulpaAttackID.UP_SLASH_PROJECTILE_SPAWNER:
+			case MeaCulpaAttackID.MIDAIR_UP_SLASH_PROJECTILE_SPAWNER:
+				Handlers.ForEach(handler => handler.OnProjectileSpawnerAttackHit(attack, info));
 				break;
 			default:
 				LogUnsupportedAttackIDError(info.attackID);
@@ -300,6 +336,11 @@ public class MeaCulpaHandlersManager : AbstractHandlersManager<MeaCulpaHandler>
 				LogUnsupportedAttackIDError(info.attackID);
 				break;
 		}
+	}
+
+	public void HandlePhantomProjectileReady()
+	{
+		Handlers.ForEach(handler => handler.OnPhantomProjectileReady());
 	}
 }
 
