@@ -1,3 +1,4 @@
+using BlasII.Framework.WeaponEvents.Constants;
 using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 
@@ -24,12 +25,87 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// </summary>
 	protected internal virtual void OnHitReceived(AttackInfo hit) {}
 
+	/* Normal attacks */
+
 	/// <summary>
-	/// Called when the player rests at a Prie Dieu.
-	/// The normal behavior in that case, is Sarmiento y Centella's indicator
-	/// being reset.
 	/// </summary>
-	protected internal virtual void OnRestAtPrieDieu() {}
+	protected internal virtual void OnNormalAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnNormalAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnDiagonalAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnDiagonalAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnCrouchedAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnCrouchedAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnVerticalAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnVerticalAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirDiagonalAttack() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirDiagonalAttackHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirPogo() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnMidAirPogoHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnStormOfThrusts(RapierAttackID attack) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnStormOfThrustsHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnWeakStormOfThrusts() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnWeakStormOfThrustsHit(AttackInfo info) {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnPowerfulStormOfThrusts() {}
+
+	/// <summary>
+	/// </summary>
+	protected internal virtual void OnPowerfulStormOfThrustsHit(AttackInfo info) {}
 
 	/* Indicators */
 
