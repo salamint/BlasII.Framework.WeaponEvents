@@ -103,6 +103,12 @@ public abstract class BladeHandler : CommonWeaponHandler
 
 	protected internal virtual void OnMidAirSlash2Hit(AttackInfo info) {}
 
+	/* Up slash attack */
+
+	protected internal virtual void OnUpSlash() {}
+
+	protected internal virtual void OnUpSlashHit(AttackInfo info) {}
+
 	/* Counter attacks */
 
 	/// <summary>
