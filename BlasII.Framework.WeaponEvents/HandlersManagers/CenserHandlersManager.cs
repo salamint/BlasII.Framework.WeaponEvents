@@ -1,3 +1,4 @@
+using BlasII.ModdingAPI;
 using System;
 using BlasII.Framework.WeaponEvents.Constants;
 using BlasII.Framework.WeaponEvents.Events;
@@ -43,9 +44,11 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 				Handlers.ForEach(handler => handler.OnIgnitionArea());
 				break;
 			case CenserAttackID.IGNITION_STRIKE:
+				ModLog.Debug("Ignition Strike attack");
 				Handlers.ForEach(handler => handler.OnIgnitionStrike());
 				break;
 			case CenserAttackID.TEMPER_STRIKE:
+				ModLog.Debug("Temper Strike attack");
 				Handlers.ForEach(handler => handler.OnTemperStrike());
 				break;
 			case CenserAttackID.MIDAIR_IGNITION_STRIKE:
@@ -114,26 +117,38 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		}
 	}
 
-	public void HandleIgnitionOrTemperStrikeHit(CenserAttackID attack, AttackInfo info)
-	{
-		if (ReferenceEquals(info, LastAttack))
+	/// <summary>
+	/// Called when the player has made an ignition or temper strike.
+	/// It uses the attack info's <c>attack</c> attribute of type
+	/// <c>AttackSourceData</c>, to check which hit the handler is currently
+	/// working on, as the <c>CenserAttackID</c> maybe the incorrect one (the
+	/// second hit of the temper strike possesses the ignition strike attack
+	/// ID).
+	/// </summary>
+	public void HandleIgnitionOrTemperStrikeHit(CenserAttackID attack, AttackInfo info) {
+		Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info));
+
+		CenserIgnitionStrikeHit hit = (CenserIgnitionStrikeHit) info.attack.id;
+		if (!Enum.IsDefined(typeof(CenserIgnitionStrikeHit), hit))
 		{
+			ModLog.Error($"Error: Unknown Ignition Strike hit ID for {Name}: {info.attack.id} {info.attack.name}");
 			return;
 		}
 
-		switch (attack)
+		switch (hit)
 		{
-			case CenserAttackID.IGNITION_STRIKE:
+			case CenserIgnitionStrikeHit.IGNITION_STRIKE_HIT_1:
+			case CenserIgnitionStrikeHit.IGNITION_STRIKE_HIT_2:
 				Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info));
 				break;
-			case CenserAttackID.TEMPER_STRIKE:
+			case CenserIgnitionStrikeHit.TEMPER_STRIKE_HIT_1:
+			case CenserIgnitionStrikeHit.TEMPER_STRIKE_HIT_2:
 				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
 				break;
 			default:
-				LogUnsupportedAttackIDError(info.attackID);
+				ModLog.Error($"Error: Unsupported Ignition Strike hit ID for {Name}: {info.attack.id} {info.attack.name}");
 				break;
 		}
-		LastAttack = info;
 	}
 
 	/// <summary>
