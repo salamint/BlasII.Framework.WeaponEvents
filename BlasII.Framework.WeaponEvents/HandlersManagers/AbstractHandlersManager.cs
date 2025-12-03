@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using BlasII.Framework.WeaponEvents.Events;
 using BlasII.ModdingAPI;
 
 using Il2CppTGK.Game.Components.Attack.Data;
@@ -15,7 +16,7 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 /// Mostly used to centralise the method that registers all the handlers in the
 /// manager automatically, and instantiating the handlers list.
 /// </summary>
-public abstract class AbstractHandlersManager<HandlerType>
+public abstract class AbstractHandlersManager<HandlerType> where HandlerType : CommonWeaponHandler
 {
 	/// <summary>
 	/// The name of the weapon the type of handler that is being managed is
@@ -83,10 +84,18 @@ public abstract class AbstractHandlersManager<HandlerType>
 	public abstract void HandleAttack(AttackID id);
 
 	/// <summary>
-	/// Methods called on the manager when the payer makes an attack that hits
+	/// Methods called on the manager when the player makes an attack that hits
 	/// the enemy.
 	/// </summary>
 	public abstract void HandleAttackHit(AttackInfo info);
+
+	/// <summary>
+	/// Methods called on the manager when the player rests at a prie dieu.
+	/// </summary>
+	public void HandleRestAtPrieDieu()
+	{
+		Handlers.ForEach(handler => handler.OnRestAtPrieDieu());
+	}
 
 	/// <summary>
 	/// Prints an error in the Melon Loader console alerting that there has been
