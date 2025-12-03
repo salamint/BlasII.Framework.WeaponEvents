@@ -197,4 +197,27 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 		}
 	}
+
+	protected internal void HandleRestAtPrieDieu()
+	{
+		WeaponHandlersManager.HandleRestAtPrieDieu();
+		switch (CurrentWeapon)
+		{
+			case Weapon.NONE:
+				ModLog.Error("Error: Attack occured while no weapon is equipped!");
+				break;
+			case Weapon.CENSER:
+				CenserHandlersManager.HandleRestAtPrieDieu();
+				break;
+			case Weapon.RAPIER:
+				RapierHandlersManager.HandleRestAtPrieDieu();
+				break;
+			case Weapon.BLADE:
+				BladeHandlersManager.HandleRestAtPrieDieu();
+				break;
+			case Weapon.MEA_CULPA:
+				MeaCulpaHandlersManager.HandleRestAtPrieDieu();
+				break;
+		}
+	}
 }
