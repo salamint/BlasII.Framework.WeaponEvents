@@ -27,6 +27,31 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 
 		switch (attack)
 		{
+			case RapierAttackID.NORMAL:
+				Handlers.ForEach(handler => handler.OnNormalAttack());
+				break;
+			case RapierAttackID.DIAGONAL:
+				Handlers.ForEach(handler => handler.OnDiagonalAttack());
+				break;
+			case RapierAttackID.CROUCHED:
+				Handlers.ForEach(handler => handler.OnCrouchedAttack());
+				break;
+			case RapierAttackID.VERTICAL:
+				Handlers.ForEach(handler => handler.OnVerticalAttack());
+				break;
+			case RapierAttackID.MIDAIR:
+				Handlers.ForEach(handler => handler.OnMidAirAttack());
+				break;
+			case RapierAttackID.MIDAIR_DIAGONAL:
+				Handlers.ForEach(handler => handler.OnMidAirDiagonalAttack());
+				break;
+			case RapierAttackID.MIDAIR_POGO:
+				Handlers.ForEach(handler => handler.OnMidAirPogo());
+				break;
+			case RapierAttackID.POWERFUL_STORM_OF_THRUSTS:
+			case RapierAttackID.WEAK_STORM_OF_THRUSTS:
+				HandleStormOfThrusts(attack);
+				break;
 			default:
 				LogUnsupportedAttackIDError(id);
 				break;
@@ -52,7 +77,21 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 		}
 	}
 
-	public void HandlerIndicatorChange(int tier)
+	public void HandleStormOfThrusts(RapierAttackID attack)
+	{
+		Handlers.ForEach(handler => handler.OnStormOfThrusts(attack));
+		switch (attack)
+		{
+			case RapierAttackID.POWERFUL_STORM_OF_THRUSTS:
+				Handlers.ForEach(handler => handler.OnPowerfulStormOfThrusts());
+				break;
+			case RapierAttackID.WEAK_STORM_OF_THRUSTS:
+				Handlers.ForEach(handler => handler.OnWeakStormOfThrusts());
+				break;
+		}
+	}
+
+	public void HandleIndicatorChange(int tier)
 	{
 		Handlers.ForEach(handler => handler.OnIndicator());
 		switch (tier)
