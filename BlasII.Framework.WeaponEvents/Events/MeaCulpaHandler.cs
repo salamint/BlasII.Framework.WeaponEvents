@@ -252,13 +252,28 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 
 	/* Phantom projectiles */
 
+	/// <summary>
+	/// Called whenever the player does an attack that generates a projectile.
+	/// </summary>
 	protected internal virtual void OnProjectileSpawnerAttack(MeaCulpaAttackID attack) {}
 
+	/// <summary>
+	/// Called whenever the player does an attack that generates a projectile,
+	/// and the attack (not the projectile, but can be both) hits.
+	/// </summary>
 	protected internal virtual void OnProjectileSpawnerAttackHit(MeaCulpaAttackID attack, AttackInfo info) {}
 
-	protected internal virtual void OnPhantomProjectile() {}
-
+	/// <summary>
+	/// Called whenever the player does an attack that generates a projectile,
+	/// and the projectile (not the attack, but can be both) hits.
+	/// </summary>
 	protected internal virtual void OnPhantomProjectileHit(AttackInfo info) {}
+
+	/// <summary>
+	/// Called when the player can shoot a phantom projectil agin using the Mea
+	/// Culpa.
+	/// </summary>
+	protected internal virtual void OnPhantomProjectileReady() {}
 
 	/* Counter attacks */
 
