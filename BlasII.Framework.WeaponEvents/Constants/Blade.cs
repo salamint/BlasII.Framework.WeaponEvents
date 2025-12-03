@@ -40,6 +40,9 @@ public enum BladeAttackID
 	/// <summary>ID: <c>WPN03_M03_2</c></summary>
 	AIR_SLASH_2 = -222371668,
 
+	/// <summary>ID: <c>WPN03_M04</c></summary>
+	UP_SLASH = 1900301800,
+
 	/// <summary>ID: <c>WPN03_M05_A</c></summary>
 	NORMAL_RETRIBUTION = -222371489,
 
