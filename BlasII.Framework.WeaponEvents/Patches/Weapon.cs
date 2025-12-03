@@ -4,8 +4,19 @@ using Il2CppLightbug.Kinematic2D.Implementation;
 using Il2CppTGK.Game.Components.Animation.Events.Player;
 using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Attack.Data;
+using Il2CppTGK.Game.Components.StatsSystem;
 
 namespace BlasII.Framework.WeaponEvents.Patches;
+
+
+[HarmonyPatch(typeof(PlayerStatsComponentPersistance), nameof(PlayerStatsComponentPersistance.UpdateFromPrieDieu))]
+class PlayerStatsComponentPersistance_UpdateFromPrieDieu_Patch
+{
+	private static void Prefix(PlayerStatsComponentPersistance __instance)
+	{
+		Main.WeaponEventsFramework.HandleRestAtPrieDieu();
+	}
+}
 
 
 [HarmonyPatch(typeof(UIWeaponController), nameof(UIWeaponController.OnEnable))]
