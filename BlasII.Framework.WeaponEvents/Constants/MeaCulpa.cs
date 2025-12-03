@@ -47,6 +47,12 @@ public enum MeaCulpaAttackID
 	/// <summary>ID: <c>WPN101_M04PS</c></summary>
 	UP_SLASH_PROJECTILE_SPAWNER = 1066827054,
 
+	/// <summary>ID: <c>WPN101_M04B</c></summary>
+	MIDAIR_UP_SLASH = -815649187,
+
+	/// <summary>ID: <c>WPN101_M04BPS</c></summary>
+	MIDAIR_UP_SLASH_PROJECTILE_SPAWNER = 990762846,
+
 	/// <summary>ID: <c>WPN101_M05_A</c></summary>
 	NORMAL_RETRIBUTION = -48918184,
 
