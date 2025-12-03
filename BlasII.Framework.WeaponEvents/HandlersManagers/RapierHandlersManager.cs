@@ -107,5 +107,10 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 				break;
 		}
 	}
+
+	public void HandleHitReceived(AttackInfo info)
+	{
+		Handlers.ForEach(handler => handler.OnHitReceived(info));
+	}
 }
 
