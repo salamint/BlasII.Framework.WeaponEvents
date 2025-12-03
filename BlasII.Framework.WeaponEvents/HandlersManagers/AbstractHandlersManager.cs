@@ -22,7 +22,11 @@ public abstract class AbstractHandlersManager<HandlerType>
 	/// Every handler in this list will be called when an event (attack, attack
 	/// hit) occurs in the game.
 	/// </summary>
-	protected internal List<HandlerType> Handlers { get; private set; }
+	public List<HandlerType> Handlers { get; private set; }
+
+	/// <summary>
+	/// </summary>
+	public AttackInfo LastAttack { get; protected internal set; }
 
 	/// <summary>
 	/// Initialises the manager by instantiating the list of handlers with an
@@ -31,6 +35,7 @@ public abstract class AbstractHandlersManager<HandlerType>
 	public AbstractHandlersManager()
 	{
 		Handlers = new List<HandlerType>();
+		LastAttack = null;
 	}
 
 	/// <summary>

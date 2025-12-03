@@ -1,6 +1,6 @@
 using Il2CppTGK.Game.Components;
 
-namespace BlasII.Framework.WeaponEvents.Handlers;
+namespace BlasII.Framework.WeaponEvents.Events;
 
 
 public abstract class MeaCulpaHandler : CommonWeaponHandler

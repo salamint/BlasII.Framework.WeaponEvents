@@ -1,6 +1,6 @@
 using System;
 using BlasII.Framework.WeaponEvents.Constants;
-using BlasII.Framework.WeaponEvents.Handlers;
+using BlasII.Framework.WeaponEvents.Events;
 using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
 
@@ -20,6 +20,50 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 	public override void HandleAttack(AttackID id)
 	{
 		Handlers.ForEach(handler => handler.OnAttack(id));
+
+		CenserAttackID attack = (CenserAttackID) id.id;
+		if (!Enum.IsDefined(typeof(CenserAttackID), attack))
+		{
+			ModLog.Error($"Error: Unknown attack ID for Veredicto: {id.id} {id.name}");
+			return;
+		}
+		ModLog.Error($"Attack ID for Veredicto: {id.id} {id.name}");
+
+		switch (attack)
+		{
+			case CenserAttackID.SWING:
+			case CenserAttackID.SWING_FOLLOW_UP:
+				Handlers.ForEach(handler => handler.OnSwing());
+				break;
+			case CenserAttackID.CROUCH:
+				Handlers.ForEach(handler => handler.OnCrouchAttack());
+				break;
+			case CenserAttackID.MIDAIR_SWING:
+				Handlers.ForEach(handler => handler.OnMidairSwing());
+				break;
+			case CenserAttackID.IGNITION_AREA:
+				Handlers.ForEach(handler => handler.OnIgnitionArea());
+				break;
+			case CenserAttackID.IGNITION_STRIKE:
+				Handlers.ForEach(handler => handler.OnIgnitionStrike());
+				break;
+			case CenserAttackID.TEMPER_STRIKE:
+				Handlers.ForEach(handler => handler.OnTemperStrike());
+				break;
+			case CenserAttackID.MIDAIR_IGNITION_STRIKE:
+				Handlers.ForEach(handler => handler.OnMidairIgnition());
+				break;
+			case CenserAttackID.WHIRLWIND:
+			case CenserAttackID.WHIRLWIND_HIT:
+				Handlers.ForEach(handler => handler.OnWhirlwind());
+				break;
+			case CenserAttackID.CHARGED_ATTACK:
+				Handlers.ForEach(handler => handler.OnChargedAttack());
+				break;
+			default:
+				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {id.id} {id.name}");
+				break;
+		}
 	}
 
 	/// <summary>
@@ -33,13 +77,14 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 		CenserAttackID attack = (CenserAttackID) info.attackID.id;
 		if (!Enum.IsDefined(typeof(CenserAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Veredicto: {info.attackID.id}");
+			ModLog.Error($"Error: Unknown attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
 			return;
 		}
 
 		switch (attack)
 		{
 			case CenserAttackID.SWING:
+			case CenserAttackID.SWING_FOLLOW_UP:
 				Handlers.ForEach(handler => handler.OnSwingHit(info));
 				break;
 			case CenserAttackID.CROUCH:
@@ -51,25 +96,46 @@ public class CenserHandlersManager : AbstractHandlersManager<CenserHandler>
 			case CenserAttackID.IGNITION_AREA:
 				Handlers.ForEach(handler => handler.OnIgnitionAreaHit(info));
 				break;
-			case CenserAttackID.IGNITION_OR_TEMPER_STRIKE:
-				/* TODO */
-				break;
-			case CenserAttackID.TEMPER_STRIKE_FIRST_HIT:
-				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
+			case CenserAttackID.IGNITION_STRIKE:
+			case CenserAttackID.TEMPER_STRIKE:
+				HandleIgnitionOrTemperStrikeHit(attack, info);
 				break;
 			case CenserAttackID.MIDAIR_IGNITION_STRIKE:
 				Handlers.ForEach(handler => handler.OnMidairIgnitionHit(info));
 				break;
 			case CenserAttackID.WHIRLWIND:
+			case CenserAttackID.WHIRLWIND_HIT:
 				Handlers.ForEach(handler => handler.OnWhirlwindHit(info));
 				break;
 			case CenserAttackID.CHARGED_ATTACK:
-				/* TODO */
+				Handlers.ForEach(handler => handler.OnChargedAttackHit(info));
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {info.attackID.id}");
+				ModLog.Error($"Error: Unsupported attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
 				break;
 		}
+	}
+
+	public void HandleIgnitionOrTemperStrikeHit(CenserAttackID attack, AttackInfo info)
+	{
+		if (ReferenceEquals(info, LastAttack))
+		{
+			return;
+		}
+
+		switch (attack)
+		{
+			case CenserAttackID.IGNITION_STRIKE:
+				Handlers.ForEach(handler => handler.OnIgnitionStrikeHit(info));
+				break;
+			case CenserAttackID.TEMPER_STRIKE:
+				Handlers.ForEach(handler => handler.OnTemperStrikeHit(info));
+				break;
+			default:
+				ModLog.Error($"Error: Unsupported ignition or temper attack ID for Veredicto: {info.attackID.id} {info.attackID.name}");
+				break;
+		}
+		LastAttack = info;
 	}
 
 	/// <summary>

@@ -1,7 +1,7 @@
 using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 
-namespace BlasII.Framework.WeaponEvents.Handlers;
+namespace BlasII.Framework.WeaponEvents.Events;
 
 
 /// <summary>
@@ -140,6 +140,19 @@ public abstract class CenserHandler : CommonWeaponHandler
 	/// a whirlwind and making them spin, and hits an enemy.
 	/// </summary>
 	protected internal virtual void OnWhirlwindHit(AttackInfo info) {}
+
+	/// <summary>
+	/// Called when the player releases the charged attack on the ground,
+	/// creating a big impact, as well as a shockwave (if upgraded).
+	/// </summary>
+	protected internal virtual void OnChargedAttack() {}
+
+	/// <summary>
+	/// Called when the player releases the charged attack on the ground,
+	/// creating a big impact, as well as a shockwave (if upgraded), and this
+	/// attack hits an enemy.
+	/// </summary>
+	protected internal virtual void OnChargedAttackHit(AttackInfo info) {}
 
 	/// <summary>
 	/// Called when Veredicto is ignited by the player.

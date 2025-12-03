@@ -1,4 +1,4 @@
-namespace BlasII.Framework.WeaponEvents.Handlers;
+namespace BlasII.Framework.WeaponEvents.Events;
 
 
 public abstract class WeaponHandler : CommonWeaponHandler

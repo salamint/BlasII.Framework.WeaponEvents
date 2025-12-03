@@ -1,5 +1,5 @@
 using BlasII.Framework.WeaponEvents.Constants;
-using BlasII.Framework.WeaponEvents.Handlers;
+using BlasII.Framework.WeaponEvents.Events;
 using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.Attack.Data;
 using System;
@@ -26,7 +26,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 		BladeAttackID attack = (BladeAttackID) id.id;
 		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {id.id}");
+			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {id.id} {id.name}");
 			return;
 		}
 
@@ -63,7 +63,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleBloodPactAttack(attack);
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {id.id}");
+				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {id.id} {id.name}");
 				break;
 		}
 	}
@@ -77,7 +77,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 		BladeAttackID attack = (BladeAttackID) info.attackID.id;
 		if (!Enum.IsDefined(typeof(BladeAttackID), attack))
 		{
-			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {info.attackID.id}");
+			ModLog.Error($"Error: Unknown attack ID for Ruego al Alba: {info.attackID.id} {info.attackID.name}");
 			return;
 		}
 
@@ -114,7 +114,7 @@ public class BladeHandlersManager : AbstractHandlersManager<BladeHandler>
 				HandleBloodPactAttackHit(attack, info);
 				break;
 			default:
-				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {info.attackID.id}");
+				ModLog.Error($"Error: Unsupported attack ID for Ruego al Alba: {info.attackID.id} {info.attackID.name}");
 				break;
 		}
 	}

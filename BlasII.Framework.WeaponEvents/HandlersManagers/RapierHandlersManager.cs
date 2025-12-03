@@ -1,5 +1,5 @@
 using BlasII.Framework.WeaponEvents.Constants;
-using BlasII.Framework.WeaponEvents.Handlers;
+using BlasII.Framework.WeaponEvents.Events;
 using Il2CppTGK.Game.Components.Attack.Data;
 
 namespace BlasII.Framework.WeaponEvents.HandlersManagers;

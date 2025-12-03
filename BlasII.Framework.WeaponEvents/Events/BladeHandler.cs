@@ -2,7 +2,7 @@ using BlasII.Framework.WeaponEvents.Constants;
 using Il2CppGame.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 
-namespace BlasII.Framework.WeaponEvents.Handlers;
+namespace BlasII.Framework.WeaponEvents.Events;
 
 
 /// <summary>
