@@ -13,4 +13,12 @@ public abstract class CommonWeaponHandler
 
 	protected internal virtual void OnUnequip() {}
 	protected internal virtual void OnEquip() {}
+
+	/// <summary>
+	/// Called when the player rests at a Prie Dieu.
+	/// The normal behavior in that case, is Sarmiento y Centella's indicator
+	/// getting reseted, Veredicto getting extinguished, and Ruego or Mea Culpa's
+	/// berserk mode deactivating and their jauge reseting.
+	/// </summary>
+	protected internal virtual void OnRestAtPrieDieu() {}
 }
