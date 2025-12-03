@@ -1,54 +1,21 @@
 using BlasII.Framework.WeaponEvents.Constants;
-using BlasII.ModdingAPI;
 using HarmonyLib;
-using Il2CppGame.Components.Attack;
-using Il2CppLightbug.Kinematic2D.Implementation;
-using Il2CppTGK.Game.Components;
 using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Components.Attack.Requesters;
 
 namespace BlasII.Framework.WeaponEvents.Patches;
 
-[HarmonyPatch(typeof(SimpleAttackRequester), nameof(SimpleAttackRequester.OnAttack))]
-class SimpleAttackRequester_OnAttack_Patch
+[HarmonyPatch(typeof(AttacksTable), nameof(AttacksTable.IsAttackHandledByTimes))]
+class AttacksTable_TryGetAttackID_Patch_4
 {
-	private static void Prefix(SimpleAttackRequester __instance, AttackID _attack)
+	private static void Prefix(AttacksTable __instance, AttackID attack)
 	{
-		ModLog.Debug($"TEST: ${__instance.name} {__instance.tag}");
-		Main.WeaponEventsFramework.HandleAttack(_attack);
+		if (!PlayerAttackTable.Contains(__instance.name))
+			return;
+		Main.WeaponEventsFramework.HandleAttack(attack);
 	}
 }
-
-
-[HarmonyPatch(typeof(AttackAbility), nameof(AttackAbility.RequestAttack), new[] {typeof(AttackID)})]
-class AttackAbility_HandleWeaponAttack_Patch
-{
-	private static void Prefix(AttackID attackID)
-	{
-		//ModLog.Debug($"TEST: {attackID.id} {attackID.name}");
-	}
-}
-
-
-[HarmonyPatch(typeof(BladeBerserkModeFiller), nameof(BladeBerserkModeFiller.OnAttack))]
-class BladeBerserkModeFiller_OnAttack_Patch
-{
-	private static void Prefix(AttackID attackID)
-	{
-		Main.WeaponEventsFramework.HandleAttack(attackID);
-	}
-}
-
-
-//[HarmonyPatch(typeof(MeaCulpaBerserkModeFiller), nameof(MeaCulpaBerserkModeFiller.OnAttack))]
-//class MeaCulpaBerserkModeFiller_OnAttack_Patch
-//{
-//	private static void Prefix(AttackID attackID)
-//	{
-//		Main.WeaponEventsFramework.HandleAttack(attackID);
-//	}
-//}
 
 
 /// <summary>
@@ -57,9 +24,15 @@ class BladeBerserkModeFiller_OnAttack_Patch
 [HarmonyPatch(typeof(SimpleAttackRequester), nameof(SimpleAttackRequester.OnAttackHit))]
 class SimpleAttackRequester_OnAttackHit_Patch
 {
-	private static void Prefix(AttackInfo attackInfo)
+	private static void Prefix(SimpleAttackRequester __instance, AttackInfo attackInfo)
 	{
-		Main.WeaponEventsFramework.HandleAttackHit(attackInfo);
+		if (__instance.attackAbility.characterBody.name != "#Main Player")
+			return;
+
+		if (__instance.attackAbility.attacks.name == PlayerAttackTable.CENSER)
+		{
+			Main.WeaponEventsFramework.HandleAttackHit(attackInfo);
+		}
 	}
 }
 
@@ -70,8 +43,11 @@ class SimpleAttackRequester_OnAttackHit_Patch
 [HarmonyPatch(typeof(HitJump), nameof(HitJump.OnAttackHit))]
 class HitJump_OnAttackHit_Patch
 {
-	private static void Prefix(AttackInfo attackInfo)
+	private static void Prefix(HitJump __instance, AttackInfo attackInfo)
 	{
+		if (__instance.jumpAbility.characterBody.name != "#Main Player")
+			return;
+
 		switch (Main.WeaponEventsFramework.CurrentWeapon)
 		{
 			case Weapon.NONE:
@@ -83,4 +59,3 @@ class HitJump_OnAttackHit_Patch
 		}
 	}
 }
-
