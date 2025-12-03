@@ -4,14 +4,37 @@ using Il2CppTGK.Game.Components.Attack.Data;
 namespace BlasII.Framework.WeaponEvents.Events;
 
 
+/// <summary>
+/// Abstract class that handles any weapon's related events.
+/// The corresponding methods are automatically called by the manager.
+/// To handle these events, simply make a sub class of this class.
+/// </summary>
 public abstract class CommonWeaponHandler
 {
+	/// <summary>
+	/// Shorthand to the global UIWeaponController object stored statically,
+	/// to be able to access it as if it was an attribute.
+	/// </summary>
 	public UIWeaponController UIWeaponController { get => Main.WeaponEventsFramework.UIWeaponController; }
 
+	/// <summary>
+	/// Called when the player attacks with a weapon.
+	/// </summary>
 	protected internal virtual void OnAttack(AttackID id) {}
+
+	/// <summary>
+	/// Called when the player attacks with a weapon and hits an enemy.
+	/// </summary>
 	protected internal virtual void OnAttackHit(AttackInfo info) {}
 
+	/// <summary>
+	/// Called when the player unequips the currently held weapon.
+	/// </summary>
 	protected internal virtual void OnUnequip() {}
+
+	/// <summary>
+	/// Called when the player equips a new weapon.
+	/// </summary>
 	protected internal virtual void OnEquip() {}
 
 	/// <summary>
