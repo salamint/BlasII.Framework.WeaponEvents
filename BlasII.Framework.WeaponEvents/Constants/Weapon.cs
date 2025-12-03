@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BlasII.Framework.WeaponEvents.Constants;
 
 
@@ -31,5 +33,23 @@ public enum Weapon
 	/// ID: <c>WPN101</c>
 	/// </summary>
 	MEA_CULPA = -1038464864
+}
+
+
+public sealed class PlayerAttackTable
+{
+	public const string CENSER = "Censer Attacks Table";
+	public const string RAPIER = "Rapier Attacks Table";
+	public const string BLADE = "Blade Attacks Table";
+	public const string MEA_CULPA = "Mea Culpa Attacks Table";
+
+	private static readonly List<string> TableNames = [
+		CENSER, RAPIER, BLADE, MEA_CULPA
+	];
+
+	public static bool Contains(string tableName)
+	{
+		return TableNames.Contains(tableName);
+	}
 }
 
