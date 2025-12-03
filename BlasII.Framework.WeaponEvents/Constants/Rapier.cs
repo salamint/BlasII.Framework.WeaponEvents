@@ -29,13 +29,13 @@ public enum RapierAttackID
 	MIDAIR_POGO = -1303655690,
 
 	/// <summary>ID: <c>WPN02_M05</c></summary>
-	STORM_OF_THRUSTS = 1900300776,
+	POWERFUL_STORM_OF_THRUSTS = 1900300776,
 
 	/// <summary>ID: <c>WPN02_M05B</c></summary>
-	STORM_OF_THRUSTS_WEAK = -2110224738,
+	WEAK_STORM_OF_THRUSTS = -2110224738,
 
 	/// <summary>ID: <c>WPN02_M09</c></summary>
-	UP_SLASH = 1900300780,
+	VERTICAL = 1900300780,
 
 	/// <summary>ID: <c>WPN02_M010</c></summary>
 	DASH_COUNTER = -828582582,
