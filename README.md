@@ -11,7 +11,7 @@ constants.
 
 ## Dependencies
 
-- [Modding API](https://github.com/Damocles/BlasII.ModdingAPI)
+- [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
 
 ## Structure
 
