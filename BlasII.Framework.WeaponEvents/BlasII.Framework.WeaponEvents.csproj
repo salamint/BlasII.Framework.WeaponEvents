@@ -17,9 +17,15 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetName).xml</DocumentationFile>
     <RepositoryUrl>https://github.com/salamint/BlasII.Framework.WeaponEvents</RepositoryUrl>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
+
     <PackageReference Include="BlasII.GameLibs" Version="2.2.0" />
     <PackageReference Include="BlasII.ModdingAPI" Version="2.0.0" />
   </ItemGroup>
