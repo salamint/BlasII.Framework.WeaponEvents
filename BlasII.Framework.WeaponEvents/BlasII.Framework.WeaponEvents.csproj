@@ -9,7 +9,7 @@
     <Authors>salamint</Authors>
     <Company>salamint</Company>
     <Description>A framework mod that allows developers to easily patch the events relative to the weapons.</Description>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
 
     <TargetName>WeaponEventsFramework</TargetName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
