@@ -60,45 +60,49 @@ public abstract class AbstractHandlersManager<HandlerType> where HandlerType : C
 
 		foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 		{
-			try
+			// This filters out dynamic assemblies, not to be mistaken with
+			// dynamic libraries. Dynamic assemblies do not come from a
+			// file, so they do not have a Location.
+			if (assembly.IsDynamic)
 			{
-				// Checking only other mods
-				string dir = Path.GetDirectoryName(assembly.Location);
-				if (dir != pluginsDir)
-				{
-					continue;
-				}
-
-				// Fecthing the types that inherit from the HandlerType
-				IEnumerable<HandlerType> handlers = assembly.GetTypes()
-						.Where(thisType => thisType.IsSubclassOf(typeof(HandlerType)))
-						.Select(handlerType => (HandlerType) Activator.CreateInstance(handlerType));
-
-				foreach (HandlerType handler in handlers)
-				{
-					// Retrieving the lazyness attribute of the class/type
-					lazynessAttribute = (HandlerLazynessAttribute) handler.GetType().GetCustomAttribute(typeof(HandlerLazynessAttribute));
-
-					// Calculating the lazyness (0 is the default)
-					int lazyness = 0;
-					if (lazynessAttribute != null)
-					{
-						lazyness = lazynessAttribute.Lazyness;
-					}
-
-					// Creating the handler list for this lazyness
-					// if it didn't already exist
-					if (!foundHandlers.ContainsKey(lazyness))
-					{
-						foundHandlers.Add(lazyness, new ());
-					}
-
-					// Adding the handler to that list
-					List<HandlerType> handlersOfSameLazyness = foundHandlers[lazyness];
-					handlersOfSameLazyness.Add(handler);
-				}
+				continue;
 			}
-			catch (NotSupportedException) { }
+
+			// Checking only other mods
+			string dir = Path.GetDirectoryName(assembly.Location);
+			if (dir != pluginsDir)
+			{
+				continue;
+			}
+
+			// Fecthing the types that inherit from the HandlerType
+			IEnumerable<HandlerType> handlers = assembly.GetTypes()
+					.Where(thisType => thisType.IsSubclassOf(typeof(HandlerType)))
+					.Select(handlerType => (HandlerType) Activator.CreateInstance(handlerType));
+
+			foreach (HandlerType handler in handlers)
+			{
+				// Retrieving the lazyness attribute of the class/type
+				lazynessAttribute = (HandlerLazynessAttribute) handler.GetType().GetCustomAttribute(typeof(HandlerLazynessAttribute));
+
+				// Calculating the lazyness (0 is the default)
+				int lazyness = 0;
+				if (lazynessAttribute != null)
+				{
+					lazyness = lazynessAttribute.Lazyness;
+				}
+
+				// Creating the handler list for this lazyness
+				// if it didn't already exist
+				if (!foundHandlers.ContainsKey(lazyness))
+				{
+					foundHandlers.Add(lazyness, new ());
+				}
+
+				// Adding the handler to that list
+				List<HandlerType> handlersOfSameLazyness = foundHandlers[lazyness];
+				handlersOfSameLazyness.Add(handler);
+			}
 		}
 
 		// Adding each handler list to the final list in the order of their
