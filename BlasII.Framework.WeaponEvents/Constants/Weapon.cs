@@ -32,7 +32,12 @@ public enum Weapon
 	/// <summary>
 	/// ID: <c>WPN101</c>
 	/// </summary>
-	MEA_CULPA = -1038464864
+	MEA_CULPA = -1038464864,
+
+	/// <summary>
+	/// ID: <c>WPN201</c>
+	/// </summary>
+	WHIP = 1844382156,
 }
 
 
