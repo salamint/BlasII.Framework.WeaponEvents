@@ -26,8 +26,8 @@
     <None Include="../LICENSE" Pack="true" PackagePath="" />
     <None Include="../README.md" Pack="true" PackagePath="" />
 
-    <PackageReference Include="BlasII.GameLibs" Version="2.2.0" />
-    <PackageReference Include="BlasII.ModdingAPI" Version="2.0.0" />
+    <PackageReference Include="BlasII.GameLibs" Version="3.0.0" />
+    <PackageReference Include="BlasII.ModdingAPI" Version="2.1.0" />
   </ItemGroup>
 
   <Target Name="Development" AfterTargets="PostBuildEvent">

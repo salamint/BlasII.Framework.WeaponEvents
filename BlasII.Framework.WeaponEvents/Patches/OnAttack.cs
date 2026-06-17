@@ -26,9 +26,6 @@ class SimpleAttackRequester_OnAttackHit_Patch
 {
 	private static void Prefix(SimpleAttackRequester __instance, AttackInfo attackInfo)
 	{
-		if (__instance.attackAbility.characterBody.name != "#Main Player")
-			return;
-
 		if (__instance.attackAbility.attacks.name == PlayerAttackTable.CENSER)
 		{
 			Main.WeaponEventsFramework.HandleAttackHit(attackInfo);
