@@ -15,7 +15,7 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// <summary>
 	/// A shortcut to the common global BladeBerserkModeFiller reference.
 	/// </summary>
-	public BladeBerserkModeFiller BerserkModeFiller { get => Main.WeaponEventsFramework.BladeBerserkModeFiller; }
+	public BladeBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.BladeBerserkModeFiller; }
 
 	/// <summary>
 	/// A shortcut to the common global current berserk mode value.

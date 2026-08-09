@@ -16,7 +16,7 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// Shorthand to the global RapierTrueSkillFiller object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public RapierTrueSkillFiller TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
+	public RapierTrueSkillFiller? TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
 
 	/// <summary>
 	/// Called when the player is hit by an enemy.

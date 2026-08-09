@@ -15,7 +15,6 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// <summary>
 	/// A shortcut to the common global MeaCulpaBerserkModeFiller reference.
 	/// </summary>
-	public MeaCulpaBerserkModeFiller BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
 
 	/// <summary>
 	/// A shortcut to the common global current berserk mode value.
@@ -39,6 +38,7 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 			}
 		}
 	}
+	public MeaCulpaBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
 
 	/* Combo attacks */
 

@@ -46,22 +46,22 @@ public class WeaponEventsFramework : BlasIIMod
 	public Weapon CurrentWeapon { get; protected internal set; } = Weapon.NONE;
 
 	/// <summary>Represents the currently equipped weapon.</summary>
-	public UIWeaponController UIWeaponController { get; protected internal set; } = null;
+	public UIWeaponController? UIWeaponController { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the state of Veredicto and the consumption of fervour.</summary>
-	public CenserIgniter CenserIgniter { get; protected internal set; } = null;
+	public CenserIgniter? CenserIgniter { get; protected internal set; } = null;
 
 	/// <summary>Represents the current state of Veredicto.</summary>
 	public bool IsCenserIgnited { get; protected internal set; } = false;
 
 	/// <summary>Object that manages the filling of Sarmiento y Centalla's indicators.</summary>
-	public RapierTrueSkillFiller RapierTrueSkillFiller { get; protected internal set; } = null;
+	public RapierTrueSkillFiller? RapierTrueSkillFiller { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the filling of Ruego al Alba's jauge.</summary>
-	public BladeBerserkModeFiller BladeBerserkModeFiller { get; protected internal set; } = null;
+	public BladeBerserkModeFiller? BladeBerserkModeFiller { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the filling of Mea Culpa's jauge.</summary>
-	public MeaCulpaBerserkModeFiller MeaCulpaBerserkModeFiller { get; protected internal set; } = null;
+	public MeaCulpaBerserkModeFiller? MeaCulpaBerserkModeFiller { get; protected internal set; } = null;
 
 
 	/* Methods */
