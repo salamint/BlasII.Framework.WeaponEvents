@@ -13,32 +13,14 @@ namespace BlasII.Framework.WeaponEvents.Events;
 public abstract class BladeHandler : CommonWeaponHandler
 {
 	/// <summary>
+	/// Proxy to access and modify the valeu of the Berserk Mode stat.
+	/// </summary>
+	public RangeStatProxy BerserkMode { get => WeaponEventsFramework.BladeBerserkMode; }
+
+	/// <summary>
 	/// A shortcut to the common global BladeBerserkModeFiller reference.
 	/// </summary>
 	public BladeBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.BladeBerserkModeFiller; }
-
-	/// <summary>
-	/// A shortcut to the common global current berserk mode value.
-	/// The getter and setter call the get and set methods of the player stats.
-	/// </summary>
-	public int CurrentBerserkModeValue
-	{
-		get
-		{
-			if (BerserkModeFiller != null)
-			{
-				return BerserkModeFiller.stats.GetCurrentValue(BerserkModeFiller.berserkModeStatID);
-			}
-			return 0;
-		}
-		set
-		{
-			if (BerserkModeFiller != null)
-			{
-				BerserkModeFiller.stats.SetCurrentValue(BerserkModeFiller.berserkModeStatID, value);
-			}
-		}
-	}
 
 	/* Combo attacks */
 

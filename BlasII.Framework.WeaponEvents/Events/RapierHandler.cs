@@ -13,6 +13,11 @@ namespace BlasII.Framework.WeaponEvents.Events;
 public abstract class RapierHandler : CommonWeaponHandler
 {
 	/// <summary>
+	/// Proxy to access and modify the valeu of the True Skill stat.
+	/// </summary>
+	public RangeStatProxy TrueSkill { get => WeaponEventsFramework.RapierTrueSkill; }
+
+	/// <summary>
 	/// Shorthand to the global RapierTrueSkillFiller object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
