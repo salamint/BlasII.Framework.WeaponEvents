@@ -22,6 +22,23 @@ namespace BlasII.Framework.WeaponEvents;
 /// </summary>
 public class WeaponEventsFramework : BlasIIMod
 {
+	/* Stats modifiers */
+
+	/// <summary>
+	/// Proxy to access and modify the valeu of the Berserk Mode stat.
+	/// </summary>
+	public static RangeStatProxy BladeBerserkMode = new ("BerserkMode");
+
+	/// <summary>
+	/// Proxy to access and modify the valeu of the Mea Culpa Berserk Mode stat.
+	/// </summary>
+	public static RangeStatProxy MeaCulpaBerserkMode = new ("MCBerserkMode");
+
+	/// <summary>
+	/// Proxy to access and modify the valeu of the True Skill stat.
+	/// </summary>
+	public static RangeStatProxy RapierTrueSkill = new ("TrueSkill");
+
 	/* Handlers managers */
 
 	/// <summary>Manages the handlers for any weapons</summary>
