@@ -26,7 +26,8 @@ class SimpleAttackRequester_OnAttackHit_Patch
 {
 	private static void Prefix(SimpleAttackRequester __instance, AttackInfo attackInfo)
 	{
-		if (__instance.attackAbility.attacks.name == PlayerAttackTable.CENSER)
+		string attacksTableName = __instance.attackAbility.attacks.name;
+		if (attacksTableName == PlayerAttackTable.CENSER || attacksTableName == PlayerAttackTable.WHIP)
 		{
 			Main.WeaponEventsFramework.HandleAttackHit(attackInfo);
 		}
