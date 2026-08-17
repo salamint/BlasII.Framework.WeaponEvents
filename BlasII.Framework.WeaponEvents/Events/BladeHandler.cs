@@ -13,7 +13,7 @@ namespace BlasII.Framework.WeaponEvents.Events;
 public abstract class BladeHandler : CommonWeaponHandler
 {
 	/// <summary>
-	/// Proxy to access and modify the valeu of the Berserk Mode stat.
+	/// Proxy to access and modify the value of the Berserk Mode stat.
 	/// </summary>
 	public RangeStatProxy BerserkMode { get => WeaponEventsFramework.BladeBerserkMode; }
 
