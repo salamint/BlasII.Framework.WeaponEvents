@@ -84,5 +84,29 @@ public enum WhipAttackID
 
 	/// <summary>WPN201_M011_B</summary>
 	COMBO_FIRST_HIT = 1717906981,
+
+	/// <summary>WPN201_M01_Grappling</summary>
+	GRAPLE_FRONT = -378295434,
+
+	/// <summary>WPN201_M01_45_Grappling</summary>
+	GRAPLE_DIAGONAL_UP = -1063314282,
+
+	/// <summary>WPN201_M01_90_Grappling</summary>
+	GRAPLE_UP = -767458192,
+
+	/// <summary>WPN201_M03_Grappling</summary>
+	GRAPLE_MIDAIR_FRONT = -2049195284,
+
+	/// <summary>WPN201_M03_45_Grappling</summary>
+	GRAPLE_MIDAIR_DIAGONAL_UP = -1192424608,
+
+	/// <summary>WPN201_M03_90_Grappling</summary>
+	GRAPLE_MIDAIR_UP = -896568518,
+
+	/// <summary>WPN201_M03_270_Grappling</summary>
+	GRAPLE_MIDAIR_DOWN = 43750190,
+
+	/// <summary>WPN201_M03_315_Grappling</summary>
+	GRAPLE_MIDAIR_DIAGONAL_DOWN = 560923360
 }
 
