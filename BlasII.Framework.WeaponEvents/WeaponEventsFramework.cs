@@ -44,6 +44,11 @@ public class WeaponEventsFramework : BlasIIMod
 	/// </summary>
 	public static RangeStatProxy Fervour = new ("Fervour");
 
+	/// <summary>
+	/// Proxy to access and modify the value of the Fervour stat.
+	/// </summary>
+	public static RangeStatProxy CoreIgnitionMode = new ("CoreIgnitionMode");
+
 	/* Handlers managers */
 
 	/// <summary>Manages the handlers for any weapons</summary>
@@ -76,6 +81,9 @@ public class WeaponEventsFramework : BlasIIMod
 	/// <summary>Represents the current state of Veredicto.</summary>
 	public bool IsCenserIgnited { get; protected internal set; } = false;
 
+	/// <summary>Represents the current state of Embrujo.</summary>
+	public bool IsWhipIgnited { get; protected internal set; } = false;
+
 	/// <summary>Object that manages the filling of Sarmiento y Centalla's indicators.</summary>
 	public RapierTrueSkillFiller? RapierTrueSkillFiller { get; protected internal set; } = null;
 
@@ -84,6 +92,9 @@ public class WeaponEventsFramework : BlasIIMod
 
 	/// <summary>Object that manages the filling of Mea Culpa's jauge.</summary>
 	public MeaCulpaBerserkModeFiller? MeaCulpaBerserkModeFiller { get; protected internal set; } = null;
+
+	/// <summary>Object that manages the filling of Embrujo's jauge.</summary>
+	public WhipCoreIgnitionModeFiller? WhipCoreIgnitionModeFiller { get; protected internal set; } = null;
 
 
 	/* Methods */
