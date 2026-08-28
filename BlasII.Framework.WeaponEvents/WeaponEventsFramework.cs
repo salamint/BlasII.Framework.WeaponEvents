@@ -4,8 +4,8 @@ using BlasII.Framework.WeaponEvents.HandlersManagers;
 using BlasII.ModdingAPI;
 using Il2Cpp;
 using Il2CppGame.Components.Attack;
-using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components;
+using Il2CppTGK.Game.Components.Attack;
 using Il2CppTGK.Game.Components.Attack.Data;
 
 namespace BlasII.Framework.WeaponEvents;
@@ -22,22 +22,52 @@ namespace BlasII.Framework.WeaponEvents;
 /// </summary>
 public class WeaponEventsFramework : BlasIIMod
 {
+	/* Stats modifiers */
+
+	/// <summary>
+	/// Proxy to access and modify the value of the Berserk Mode stat.
+	/// </summary>
+	public static RangeStatProxy BladeBerserkMode = new ("BerserkMode");
+
+	/// <summary>
+	/// Proxy to access and modify the value of the Mea Culpa Berserk Mode stat.
+	/// </summary>
+	public static RangeStatProxy MeaCulpaBerserkMode = new ("MCBerserkMode");
+
+	/// <summary>
+	/// Proxy to access and modify the value of the True Skill stat.
+	/// </summary>
+	public static RangeStatProxy RapierTrueSkill = new ("TrueSkill");
+
+	/// <summary>
+	/// Proxy to access and modify the value of the True Skill stat.
+	/// </summary>
+	public static RangeStatProxy Fervour = new ("Fervour");
+
+	/// <summary>
+	/// Proxy to access and modify the value of the Fervour stat.
+	/// </summary>
+	public static RangeStatProxy CoreIgnitionMode = new ("CoreIgnitionMode");
+
 	/* Handlers managers */
 
 	/// <summary>Manages the handlers for any weapons</summary>
-	public WeaponHandlersManager WeaponHandlersManager { get; private set; }
+	public WeaponHandlersManager WeaponHandlersManager { get; init; } = new ();
 
 	/// <summary>Manages the handlers for Veredicto</summary>
-	public CenserHandlersManager CenserHandlersManager { get; private set; }
+	public CenserHandlersManager CenserHandlersManager { get; init; } = new ();
 
 	/// <summary>Manages the handlers for Saarmiento y Centella</summary>
-	public RapierHandlersManager RapierHandlersManager { get; private set; }
+	public RapierHandlersManager RapierHandlersManager { get; init; } = new ();
 
 	/// <summary>Manages the handlers for Ruego al Alba</summary>
-	public BladeHandlersManager BladeHandlersManager { get; private set; }
+	public BladeHandlersManager BladeHandlersManager { get; init; } = new ();
 
 	/// <summary>Manages the handlers for Mea Culpa</summary>
-	public MeaCulpaHandlersManager MeaCulpaHandlersManager { get; private set; }
+	public MeaCulpaHandlersManager MeaCulpaHandlersManager { get; init; } = new ();
+
+	/// <summary>Manages the handlers for Embrujo</summary>
+	public WhipHandlersManager WhipHandlersManager { get; init; } = new ();
 
 
 	/* Quick access game objects */
@@ -46,22 +76,28 @@ public class WeaponEventsFramework : BlasIIMod
 	public Weapon CurrentWeapon { get; protected internal set; } = Weapon.NONE;
 
 	/// <summary>Represents the currently equipped weapon.</summary>
-	public UIWeaponController UIWeaponController { get; protected internal set; } = null;
+	public UIWeaponController? UIWeaponController { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the state of Veredicto and the consumption of fervour.</summary>
-	public CenserIgniter CenserIgniter { get; protected internal set; } = null;
+	public CenserIgniter? CenserIgniter { get; protected internal set; } = null;
 
 	/// <summary>Represents the current state of Veredicto.</summary>
 	public bool IsCenserIgnited { get; protected internal set; } = false;
 
+	/// <summary>Represents the current state of Embrujo.</summary>
+	public bool IsWhipIgnited { get; protected internal set; } = false;
+
 	/// <summary>Object that manages the filling of Sarmiento y Centalla's indicators.</summary>
-	public RapierTrueSkillFiller RapierTrueSkillFiller { get; protected internal set; } = null;
+	public RapierTrueSkillFiller? RapierTrueSkillFiller { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the filling of Ruego al Alba's jauge.</summary>
-	public BladeBerserkModeFiller BladeBerserkModeFiller { get; protected internal set; } = null;
+	public BladeBerserkModeFiller? BladeBerserkModeFiller { get; protected internal set; } = null;
 
 	/// <summary>Object that manages the filling of Mea Culpa's jauge.</summary>
-	public MeaCulpaBerserkModeFiller MeaCulpaBerserkModeFiller { get; protected internal set; } = null;
+	public MeaCulpaBerserkModeFiller? MeaCulpaBerserkModeFiller { get; protected internal set; } = null;
+
+	/// <summary>Object that manages the filling of Embrujo's jauge.</summary>
+	public WhipCoreIgnitionModeFiller? WhipCoreIgnitionModeFiller { get; protected internal set; } = null;
 
 
 	/* Methods */
@@ -71,15 +107,7 @@ public class WeaponEventsFramework : BlasIIMod
 	/// It creates empty lists of handlers managers for each weapon kind (even
 	/// the common weapon manager).
 	/// </summary>
-    internal WeaponEventsFramework() :
-		base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION)
-	{
-		WeaponHandlersManager = new WeaponHandlersManager();
-		CenserHandlersManager = new CenserHandlersManager();
-		RapierHandlersManager = new RapierHandlersManager();
-		BladeHandlersManager = new BladeHandlersManager();
-		MeaCulpaHandlersManager = new MeaCulpaHandlersManager();
-	}
+    internal WeaponEventsFramework() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) {}
 
 	/// <summary>
 	/// Called after the mod has been loaded and before the game starts.
@@ -91,6 +119,7 @@ public class WeaponEventsFramework : BlasIIMod
 		RapierHandlersManager.RegisterAllHandlers();
 		BladeHandlersManager.RegisterAllHandlers();
 		MeaCulpaHandlersManager.RegisterAllHandlers();
+		WhipHandlersManager.RegisterAllHandlers();
     }
 
 	/// <summary>
@@ -118,6 +147,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.Handlers.ForEach(handler => handler.OnUnequip());
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.Handlers.ForEach(handler => handler.OnUnequip());
 				break;
 		}
 	}
@@ -154,6 +186,9 @@ public class WeaponEventsFramework : BlasIIMod
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.Handlers.ForEach(handler => handler.OnEquip());
 				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.Handlers.ForEach(handler => handler.OnEquip());
+				break;
 		}
 	}
 
@@ -183,6 +218,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleAttack(id);
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleAttack(id);
 				break;
 		}
 	}
@@ -219,6 +257,9 @@ public class WeaponEventsFramework : BlasIIMod
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleAttackHit(info);
 				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleAttackHit(info);
+				break;
 		}
 	}
 
@@ -246,6 +287,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleRestAtPrieDieu();
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleRestAtPrieDieu();
 				break;
 		}
 	}

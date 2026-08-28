@@ -13,10 +13,15 @@ namespace BlasII.Framework.WeaponEvents.Events;
 public abstract class RapierHandler : CommonWeaponHandler
 {
 	/// <summary>
+	/// Proxy to access and modify the value of the True Skill stat.
+	/// </summary>
+	public RangeStatProxy TrueSkill { get => WeaponEventsFramework.RapierTrueSkill; }
+
+	/// <summary>
 	/// Shorthand to the global RapierTrueSkillFiller object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public RapierTrueSkillFiller TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
+	public RapierTrueSkillFiller? TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
 
 	/// <summary>
 	/// Called when the player is hit by an enemy.
@@ -29,19 +34,11 @@ public abstract class RapierHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnNormalAttack() {}
+	public virtual void OnNormalAttack(AttackDirection direction) {}
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnNormalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnDiagonalAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnDiagonalAttackHit(AttackInfo info) {}
+	public virtual void OnNormalAttackHit(AttackDirection direction, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
@@ -53,35 +50,11 @@ public abstract class RapierHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnVerticalAttack() {}
+	public virtual void OnMidAirAttack(AttackDirection direction) {}
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnVerticalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirDiagonalAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirDiagonalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirPogo() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirPogoHit(AttackInfo info) {}
+	public virtual void OnMidAirAttackHit(AttackDirection direction, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>

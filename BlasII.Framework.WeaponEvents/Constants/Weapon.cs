@@ -12,7 +12,7 @@ public enum Weapon
 	/// Represents the absence of weapons.
 	/// There is no name or string ID for this, it was chosen arbitrarily.
 	/// </summary>
-	NONE = 0,
+	NONE = 696385039,
 
 	/// <summary>
 	/// ID: <c>WPN01</c>
@@ -62,11 +62,14 @@ public sealed class PlayerAttackTable
 	/// <summary>Name of the attack table of Mea Culpa</summary>
 	public const string MEA_CULPA = "Mea Culpa Attacks Table";
 
+	/// <summary>Name of the attack table of Mea Culpa</summary>
+	public const string WHIP = "Whip Attacks Table";
+
 	/// <summary>
 	/// List of all the names of the attacks tables corresponding to a weapon.
 	/// </summary>
 	private static readonly List<string> TableNames = [
-		CENSER, RAPIER, BLADE, MEA_CULPA
+		CENSER, RAPIER, BLADE, MEA_CULPA, WHIP
 	];
 
 	/// <summary>

@@ -13,32 +13,14 @@ namespace BlasII.Framework.WeaponEvents.Events;
 public abstract class MeaCulpaHandler : CommonWeaponHandler
 {
 	/// <summary>
-	/// A shortcut to the common global MeaCulpaBerserkModeFiller reference.
+	/// Proxy to access and modify the value of the Berserk Mode stat.
 	/// </summary>
-	public MeaCulpaBerserkModeFiller BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
+	public RangeStatProxy BerserkMode { get => WeaponEventsFramework.MeaCulpaBerserkMode; }
 
 	/// <summary>
-	/// A shortcut to the common global current berserk mode value.
-	/// The getter and setter call the get and set methods of the player stats.
+	/// A shortcut to the common global MeaCulpaBerserkModeFiller reference.
 	/// </summary>
-	public int CurrentBerserkModeValue
-	{
-		get
-		{
-			if (BerserkModeFiller != null)
-			{
-				return BerserkModeFiller.stats.GetCurrentValue(BerserkModeFiller.berserkStat);
-			}
-			return 0;
-		}
-		set
-		{
-			if (BerserkModeFiller != null)
-			{
-				BerserkModeFiller.stats.SetCurrentValue(BerserkModeFiller.berserkStat, value);
-			}
-		}
-	}
+	public MeaCulpaBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
 
 	/* Combo attacks */
 

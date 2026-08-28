@@ -16,34 +16,24 @@ namespace BlasII.Framework.WeaponEvents.HandlersManagers;
 /// Mostly used to centralise the method that registers all the handlers in the
 /// manager automatically, and instantiating the handlers list.
 /// </summary>
-public abstract class AbstractHandlersManager<HandlerType> where HandlerType : CommonWeaponHandler
+public abstract class AbstractHandlersManager<HandlerType>(string name) where HandlerType : CommonWeaponHandler
 {
 	/// <summary>
 	/// The name of the weapon the type of handler that is being managed is
 	/// handling events for. This is used for error messages.
 	/// </summary>
-	public string Name { get; private set; }
+	public string Name { get; private set; } = name;
 
 	/// <summary>
 	/// The list of handlers managed by the manager.
 	/// Every handler in this list will be called when an event (attack, attack
 	/// hit) occurs in the game.
 	/// </summary>
-	public List<HandlerType> Handlers { get; private set; }
+	public List<HandlerType> Handlers { get; private set; } = new List<HandlerType>();
 
 	/// <summary>
 	/// </summary>
-	public AttackInfo LastAttack { get; protected internal set; }
-
-	/// <summary>
-	/// Initialises the manager by instantiating the list of handlers with an
-	/// emtpy list.
-	/// </summary>
-	public AbstractHandlersManager(string name)
-	{
-		Handlers = new List<HandlerType>();
-		LastAttack = null;
-	}
+	public AttackInfo? LastAttack { get; protected internal set; } = null;
 
 	/// <summary>
 	/// Instantiate every subclass of the type <typeparamref name="HandlerType"/>,
@@ -54,9 +44,9 @@ public abstract class AbstractHandlersManager<HandlerType> where HandlerType : C
 	{
 
 		string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-		string pluginsDir = Path.GetDirectoryName(assemblyLocation);
+		string? pluginsDir = Path.GetDirectoryName(assemblyLocation);
 		SortedDictionary<int, List<HandlerType>> foundHandlers = new ();
-		HandlerLazynessAttribute lazynessAttribute = null;
+		HandlerLazynessAttribute? lazynessAttribute = null;
 
 		foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 		{
@@ -69,21 +59,23 @@ public abstract class AbstractHandlersManager<HandlerType> where HandlerType : C
 			}
 
 			// Checking only other mods
-			string dir = Path.GetDirectoryName(assembly.Location);
+			string? dir = Path.GetDirectoryName(assembly.Location);
 			if (dir != pluginsDir)
 			{
 				continue;
 			}
 
 			// Fecthing the types that inherit from the HandlerType
-			IEnumerable<HandlerType> handlers = assembly.GetTypes()
+			IEnumerable<HandlerType?> handlers = assembly.GetTypes()
 					.Where(thisType => thisType.IsSubclassOf(typeof(HandlerType)))
-					.Select(handlerType => (HandlerType) Activator.CreateInstance(handlerType));
+					.Select(handlerType => (HandlerType?) Activator.CreateInstance(handlerType));
 
-			foreach (HandlerType handler in handlers)
+			foreach (HandlerType? handler in handlers)
 			{
+				if (handler == null) continue;
+
 				// Retrieving the lazyness attribute of the class/type
-				lazynessAttribute = (HandlerLazynessAttribute) handler.GetType().GetCustomAttribute(typeof(HandlerLazynessAttribute));
+				lazynessAttribute = (HandlerLazynessAttribute?) handler.GetType().GetCustomAttribute(typeof(HandlerLazynessAttribute));
 
 				// Calculating the lazyness (0 is the default)
 				int lazyness = 0;
