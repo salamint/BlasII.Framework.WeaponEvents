@@ -9,6 +9,8 @@ related to a weapon.
 - Event IDs enumerations, as well as an enumeration for weapon IDs, and a few
 constants.
 
+Package on NuGet.org: [BlasII.Framework.WeaponEvents](https://www.nuget.org/packages/BlasII.Framework.WeaponEvents)
+
 ## Dependencies
 
 - [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
