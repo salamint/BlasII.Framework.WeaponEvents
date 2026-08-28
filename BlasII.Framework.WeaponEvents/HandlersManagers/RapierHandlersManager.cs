@@ -31,25 +31,25 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 		switch (attack)
 		{
 			case RapierAttackID.NORMAL:
-				Handlers.ForEach(handler => handler.OnNormalAttack());
+				Handlers.ForEach(handler => handler.OnNormalAttack(AttackDirection.FRONT));
 				break;
 			case RapierAttackID.DIAGONAL:
-				Handlers.ForEach(handler => handler.OnDiagonalAttack());
+				Handlers.ForEach(handler => handler.OnNormalAttack(AttackDirection.DIAGONAL_UP));
 				break;
 			case RapierAttackID.CROUCHED:
 				Handlers.ForEach(handler => handler.OnCrouchedAttack());
 				break;
 			case RapierAttackID.VERTICAL:
-				Handlers.ForEach(handler => handler.OnVerticalAttack());
+				Handlers.ForEach(handler => handler.OnNormalAttack(AttackDirection.UP));
 				break;
 			case RapierAttackID.MIDAIR:
-				Handlers.ForEach(handler => handler.OnMidAirAttack());
+				Handlers.ForEach(handler => handler.OnMidAirAttack(AttackDirection.FRONT));
 				break;
 			case RapierAttackID.MIDAIR_DIAGONAL:
-				Handlers.ForEach(handler => handler.OnMidAirDiagonalAttack());
+				Handlers.ForEach(handler => handler.OnMidAirAttack(AttackDirection.DIAGONAL_UP));
 				break;
 			case RapierAttackID.MIDAIR_POGO:
-				Handlers.ForEach(handler => handler.OnMidAirPogo());
+				Handlers.ForEach(handler => handler.OnMidAirAttack(AttackDirection.DIAGONAL_DOWN));
 				break;
 			case RapierAttackID.POWERFUL_STORM_OF_THRUSTS:
 			case RapierAttackID.WEAK_STORM_OF_THRUSTS:
@@ -92,25 +92,25 @@ public class RapierHandlersManager : AbstractHandlersManager<RapierHandler>
 		switch (attack)
 		{
 			case RapierAttackID.NORMAL:
-				Handlers.ForEach(handler => handler.OnNormalAttackHit(info));
+				Handlers.ForEach(handler => handler.OnNormalAttackHit(AttackDirection.FRONT, info));
 				break;
 			case RapierAttackID.DIAGONAL:
-				Handlers.ForEach(handler => handler.OnDiagonalAttackHit(info));
+				Handlers.ForEach(handler => handler.OnNormalAttackHit(AttackDirection.DIAGONAL_UP, info));
 				break;
 			case RapierAttackID.CROUCHED:
 				Handlers.ForEach(handler => handler.OnCrouchedAttackHit(info));
 				break;
 			case RapierAttackID.VERTICAL:
-				Handlers.ForEach(handler => handler.OnVerticalAttackHit(info));
+				Handlers.ForEach(handler => handler.OnNormalAttackHit(AttackDirection.UP, info));
 				break;
 			case RapierAttackID.MIDAIR:
-				Handlers.ForEach(handler => handler.OnMidAirAttackHit(info));
+				Handlers.ForEach(handler => handler.OnMidAirAttackHit(AttackDirection.FRONT, info));
 				break;
 			case RapierAttackID.MIDAIR_DIAGONAL:
-				Handlers.ForEach(handler => handler.OnMidAirDiagonalAttackHit(info));
+				Handlers.ForEach(handler => handler.OnMidAirAttackHit(AttackDirection.DIAGONAL_UP, info));
 				break;
 			case RapierAttackID.MIDAIR_POGO:
-				Handlers.ForEach(handler => handler.OnMidAirPogoHit(info));
+				Handlers.ForEach(handler => handler.OnMidAirAttackHit(AttackDirection.DIAGONAL_DOWN, info));
 				break;
 			case RapierAttackID.POWERFUL_STORM_OF_THRUSTS:
 			case RapierAttackID.WEAK_STORM_OF_THRUSTS:
