@@ -34,19 +34,11 @@ public abstract class RapierHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnNormalAttack() {}
+	public virtual void OnNormalAttack(AttackDirection direction) {}
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnNormalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnDiagonalAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnDiagonalAttackHit(AttackInfo info) {}
+	public virtual void OnNormalAttackHit(AttackDirection direction, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
@@ -58,35 +50,11 @@ public abstract class RapierHandler : CommonWeaponHandler
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnVerticalAttack() {}
+	public virtual void OnMidAirAttack(AttackDirection direction) {}
 
 	/// <summary>
 	/// </summary>
-	public virtual void OnVerticalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirDiagonalAttack() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirDiagonalAttackHit(AttackInfo info) {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirPogo() {}
-
-	/// <summary>
-	/// </summary>
-	public virtual void OnMidAirPogoHit(AttackInfo info) {}
+	public virtual void OnMidAirAttackHit(AttackDirection direction, AttackInfo info) {}
 
 	/// <summary>
 	/// </summary>
