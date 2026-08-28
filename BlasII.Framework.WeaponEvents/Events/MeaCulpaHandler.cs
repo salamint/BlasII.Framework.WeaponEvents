@@ -15,12 +15,12 @@ public abstract class MeaCulpaHandler : CommonWeaponHandler
 	/// <summary>
 	/// Proxy to access and modify the value of the Berserk Mode stat.
 	/// </summary>
-	public RangeStatProxy BerserkMode { get => WeaponEventsFramework.MeaCulpaBerserkMode; }
+	public static RangeStatProxy BerserkMode { get => WeaponEventsFramework.MeaCulpaBerserkMode; }
 
 	/// <summary>
 	/// A shortcut to the common global MeaCulpaBerserkModeFiller reference.
 	/// </summary>
-	public MeaCulpaBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
+	public static MeaCulpaBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.MeaCulpaBerserkModeFiller; }
 
 	/* Combo attacks */
 
