@@ -66,6 +66,9 @@ public class WeaponEventsFramework : BlasIIMod
 	/// <summary>Manages the handlers for Mea Culpa</summary>
 	public MeaCulpaHandlersManager MeaCulpaHandlersManager { get; init; } = new ();
 
+	/// <summary>Manages the handlers for Embrujo</summary>
+	public WhipHandlersManager WhipHandlersManager { get; init; } = new ();
+
 
 	/* Quick access game objects */
 
@@ -116,6 +119,7 @@ public class WeaponEventsFramework : BlasIIMod
 		RapierHandlersManager.RegisterAllHandlers();
 		BladeHandlersManager.RegisterAllHandlers();
 		MeaCulpaHandlersManager.RegisterAllHandlers();
+		WhipHandlersManager.RegisterAllHandlers();
     }
 
 	/// <summary>
@@ -143,6 +147,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.Handlers.ForEach(handler => handler.OnUnequip());
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.Handlers.ForEach(handler => handler.OnUnequip());
 				break;
 		}
 	}
@@ -179,6 +186,9 @@ public class WeaponEventsFramework : BlasIIMod
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.Handlers.ForEach(handler => handler.OnEquip());
 				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.Handlers.ForEach(handler => handler.OnEquip());
+				break;
 		}
 	}
 
@@ -208,6 +218,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleAttack(id);
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleAttack(id);
 				break;
 		}
 	}
@@ -244,6 +257,9 @@ public class WeaponEventsFramework : BlasIIMod
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleAttackHit(info);
 				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleAttackHit(info);
+				break;
 		}
 	}
 
@@ -271,6 +287,9 @@ public class WeaponEventsFramework : BlasIIMod
 				break;
 			case Weapon.MEA_CULPA:
 				MeaCulpaHandlersManager.HandleRestAtPrieDieu();
+				break;
+			case Weapon.WHIP:
+				WhipHandlersManager.HandleRestAtPrieDieu();
 				break;
 		}
 	}
