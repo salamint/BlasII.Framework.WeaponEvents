@@ -15,13 +15,13 @@ public abstract class RapierHandler : CommonWeaponHandler
 	/// <summary>
 	/// Proxy to access and modify the value of the True Skill stat.
 	/// </summary>
-	public RangeStatProxy TrueSkill { get => WeaponEventsFramework.RapierTrueSkill; }
+	public static RangeStatProxy TrueSkill { get => WeaponEventsFramework.RapierTrueSkill; }
 
 	/// <summary>
 	/// Shorthand to the global RapierTrueSkillFiller object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public RapierTrueSkillFiller? TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
+	public static RapierTrueSkillFiller? TrueSkillFiller { get => Main.WeaponEventsFramework.RapierTrueSkillFiller; }
 
 	/// <summary>
 	/// Called when the player is hit by an enemy.

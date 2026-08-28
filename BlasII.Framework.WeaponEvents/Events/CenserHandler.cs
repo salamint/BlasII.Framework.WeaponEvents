@@ -15,13 +15,13 @@ public abstract class CenserHandler : CommonWeaponHandler
 	/// Shorthand to the global CenserIgniter object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public CenserIgniter? Igniter { get => Main.WeaponEventsFramework.CenserIgniter; }
+	public static CenserIgniter? Igniter { get => Main.WeaponEventsFramework.CenserIgniter; }
 
 	/// <summary>
 	/// Shorthand to the global boolean stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public bool IsIgnited { get => Main.WeaponEventsFramework.IsCenserIgnited; }
+	public static bool IsIgnited { get => Main.WeaponEventsFramework.IsCenserIgnited; }
 
 	/* Swing */
 

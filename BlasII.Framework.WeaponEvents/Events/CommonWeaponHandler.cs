@@ -14,13 +14,13 @@ public abstract class CommonWeaponHandler
 	/// <summary>
 	/// Proxy to access and modify the value of the Fervour stat.
 	/// </summary>
-	public RangeStatProxy Fervour { get => WeaponEventsFramework.Fervour; }
+	public static RangeStatProxy Fervour { get => WeaponEventsFramework.Fervour; }
 
 	/// <summary>
 	/// Shorthand to the global UIWeaponController object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public UIWeaponController? UIWeaponController { get => Main.WeaponEventsFramework.UIWeaponController; }
+	public static UIWeaponController? UIWeaponController { get => Main.WeaponEventsFramework.UIWeaponController; }
 
 	/// <summary>
 	/// Called when the player attacks with a weapon.

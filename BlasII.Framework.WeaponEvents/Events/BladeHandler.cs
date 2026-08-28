@@ -15,12 +15,12 @@ public abstract class BladeHandler : CommonWeaponHandler
 	/// <summary>
 	/// Proxy to access and modify the value of the Berserk Mode stat.
 	/// </summary>
-	public RangeStatProxy BerserkMode { get => WeaponEventsFramework.BladeBerserkMode; }
+	public static RangeStatProxy BerserkMode { get => WeaponEventsFramework.BladeBerserkMode; }
 
 	/// <summary>
 	/// A shortcut to the common global BladeBerserkModeFiller reference.
 	/// </summary>
-	public BladeBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.BladeBerserkModeFiller; }
+	public static BladeBerserkModeFiller? BerserkModeFiller { get => Main.WeaponEventsFramework.BladeBerserkModeFiller; }
 
 	/* Combo attacks */
 

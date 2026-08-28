@@ -15,13 +15,13 @@ public abstract class WhipHandler : CommonWeaponHandler
 	/// <summary>
 	/// Proxy to access and modify the value of the Berserk Mode stat.
 	/// </summary>
-	public RangeStatProxy CoreIgnitionMode { get => WeaponEventsFramework.CoreIgnitionMode; }
+	public static RangeStatProxy CoreIgnitionMode { get => WeaponEventsFramework.CoreIgnitionMode; }
 
 	/// <summary>
 	/// Shorthand to the global CenserIgniter object stored statically,
 	/// to be able to access it as if it was an attribute.
 	/// </summary>
-	public WhipCoreIgnitionModeFiller? CoreIgnitionModeFiller { get => Main.WeaponEventsFramework.WhipCoreIgnitionModeFiller; }
+	public static WhipCoreIgnitionModeFiller? CoreIgnitionModeFiller { get => Main.WeaponEventsFramework.WhipCoreIgnitionModeFiller; }
 
 	/// <summary>
 	/// Shorthand to the global boolean stored statically,
