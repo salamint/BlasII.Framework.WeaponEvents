@@ -104,7 +104,7 @@ public abstract class AbstractHandlersManager<HandlerType>(string name) where Ha
 		{
 			Handlers.AddRange(handlersOfSameLazyness);
 		}
-        ModLog.Info($"Registered {Handlers.Count()} {nameof(HandlerType)}");
+        ModLog.Info($"Registered {Handlers.Count()} handlers for {Name}");
 	}
 
 	/// <summary>
